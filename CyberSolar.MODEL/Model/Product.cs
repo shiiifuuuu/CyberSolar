@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CyberSolar.MODEL.Model
 {
-    class Product
+    public class Product
     {
+        public int Id { set; get; }
+        public string Category { set; get; }
+        public string Code { set; get; }
+        public string Name { set; get; }
+        public int ReorderLevel { set; get; }
+        public string Description { set; get; }
     }
 }
