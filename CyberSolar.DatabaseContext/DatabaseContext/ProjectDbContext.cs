@@ -10,6 +10,7 @@ namespace CyberSolar.DatabaseContext.DatabaseContext
 {
     public class ProjectDbContext: DbContext
     {
+        public DbSet<Category> Categories { set; get; }
         public DbSet<Product> Products { set; get; }
     }
 }
