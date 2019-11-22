@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar", "CyberSolar\CyberSolar.csproj", "{B208A97E-67CC-47DB-9BEE-791FFDB62D84}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar.MODEL", "CyberSolar.MODEL\CyberSolar.MODEL.csproj", "{19DD9224-824A-474C-B38C-50EF6EB7581C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar.BLL", "CyberSolar.BLL\CyberSolar.BLL.csproj", "{9CAFB03D-C810-4715-B105-0F57AEC4C5D4}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar.DAL", "CyberSola
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar.DatabaseContext", "CyberSolar.DatabaseContext\CyberSolar.DatabaseContext.csproj", "{F78CD9A9-AC34-4B08-B031-40DCADD4AC29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSolar", "CyberSolar\CyberSolar.csproj", "{896FCB32-C88E-48BC-B5AF-FA202300E6B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B208A97E-67CC-47DB-9BEE-791FFDB62D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B208A97E-67CC-47DB-9BEE-791FFDB62D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B208A97E-67CC-47DB-9BEE-791FFDB62D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B208A97E-67CC-47DB-9BEE-791FFDB62D84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19DD9224-824A-474C-B38C-50EF6EB7581C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19DD9224-824A-474C-B38C-50EF6EB7581C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DD9224-824A-474C-B38C-50EF6EB7581C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{F78CD9A9-AC34-4B08-B031-40DCADD4AC29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F78CD9A9-AC34-4B08-B031-40DCADD4AC29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F78CD9A9-AC34-4B08-B031-40DCADD4AC29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896FCB32-C88E-48BC-B5AF-FA202300E6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896FCB32-C88E-48BC-B5AF-FA202300E6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896FCB32-C88E-48BC-B5AF-FA202300E6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896FCB32-C88E-48BC-B5AF-FA202300E6B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

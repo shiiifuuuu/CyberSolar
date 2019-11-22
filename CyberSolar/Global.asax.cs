@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using CyberSolar.Models;
+using CyberSolar.MODEL.Model;
 
 namespace CyberSolar
 {
@@ -13,6 +16,13 @@ namespace CyberSolar
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //Initialize Automapper
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CategoryViewModel, Category>();
+                cfg.CreateMap<Category, CategoryViewModel>();
+            });
         }
     }
 }

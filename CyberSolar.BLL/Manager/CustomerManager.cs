@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace CyberSolar.BLL.Manager
 {
-    class Program
+    public class CustomerManager
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }
