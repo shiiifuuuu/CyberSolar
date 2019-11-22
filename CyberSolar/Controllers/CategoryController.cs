@@ -34,17 +34,19 @@ namespace CyberSolar.Controllers
             //automapper method
             Category category = Mapper.Map<Category>(categoryViewModel);
 
-            string message="";
+            string message = "";
 
-            if (_categoryManager.Add(category))
+            if (ModelState.IsValid)
             {
-                message += "Saved!";
+                if (_categoryManager.Add(category))
+                {
+                    message += "Saved!";
+                }
+                else
+                {
+                    message += "Not Saved!!";
+                }
             }
-            else
-            {
-                message += "Not Saved!!";
-            }
-
             categoryViewModel.Categories = _categoryManager.GetAll();
             ViewBag.Message = message;
             return View(categoryViewModel);

@@ -36,6 +36,10 @@
             max-width: 80%;
             margin: auto;
         }
+        .errorMessage {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -46,16 +50,24 @@
         <table style="width: 70%; margin: auto">
 
             <tr>
-                <td>Code:</td>
-                <td><input type="text" name="Code" value="@Model.Code"/></td>
+                @*<td>Code:</td>*@
+                <td>@Html.LabelFor(c=>c.Code)</td>
+                @*<td><input type="text" name="Code" value="@Model.Code"/></td>*@
+                @*<td>@Html.TextBox("Code", Model.Code)</td>*@ @*Weakly Bound*@
+                <td>@Html.TextBoxFor(c=>c.Code, Model.Code)</td> @*Strongly Bound*@
+                <td class="errorMessage">@Html.ValidationMessageFor(c=>c.Code)</td>
             </tr>
             <tr>
-                <td>Name:</td>
-                <td><input type="text" name="Name" value="@Model.Name"/></td>
+                @*<td>Name:</td>*@
+                <td>@Html.LabelFor(c=>c.Name)</td>
+                @*<td><input type="text" name="Name" value="@Model.Name"/></td>*@
+                <td>@Html.TextBoxFor(c=>c.Name, Model.Name)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c=>c.Name)</td>
             </tr>
             <tr>
                 <td></td>
                 <td><input type="submit" value="Save"/></td>
+                <td></td>
             </tr>
             <tr>
                 <td></td>
@@ -65,6 +77,7 @@
                         <h2>@ViewBag.Message</h2>
                     }
                 </td>
+                <td></td>
             </tr>
 
         </table>
@@ -90,5 +103,10 @@
         
     </table>
 </div>
+
+    <script src="~/Scripts/jquery-1.8.0.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 </body>
 </html>
