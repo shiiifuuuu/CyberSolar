@@ -10,21 +10,21 @@ using CyberSolar.MODEL.Model;
 
 namespace CyberSolar.Controllers
 {
-    public class CategoryController : Controller
+    public class CustomerController : Controller
     {
-        CategoryManager _categoryManager = new CategoryManager();
-        Category _category = new Category();
+        CustomerManager _customerManager = new CustomerManager();
+        Customer _customer = new Customer();
 
         [HttpGet]
         public ActionResult Add()
         {
-            CategoryViewModel categoryViewModel = new CategoryViewModel();
-            categoryViewModel.Categories = _categoryManager.GetAll();
-            return View(categoryViewModel);
+            CustomerViewModel customerViewModel = new CustomerViewModel();
+            customerViewModel.Customers = _customerManager.GetAll();
+            return View(customerViewModel);
         }
 
         [HttpPost]
-        public ActionResult Add(CategoryViewModel categoryViewModel)
+        public ActionResult Add(CustomerViewModel customerViewModel)
         {
             //default method
             //Category category = new Category();
@@ -32,26 +32,24 @@ namespace CyberSolar.Controllers
             //category.Name = categoryViewModel.Name;
 
             //automapper method
-            Category category = Mapper.Map<Category>(categoryViewModel);
+            Customer customer = Mapper.Map<Customer>(customerViewModel);
 
             string message = "";
 
             if (ModelState.IsValid)
             {
-                if (_categoryManager.Add(category))
+                if (_customerManager.Add(customer))
                 {
                     message += "Saved!";
-                    ModelState.Clear();
-                    return View();
                 }
                 else
                 {
                     message += "Not Saved!!";
                 }
             }
-            categoryViewModel.Categories = _categoryManager.GetAll();
+            customerViewModel.Customers = _customerManager.GetAll();
             ViewBag.Message = message;
-            return View(categoryViewModel);
+            return View(customerViewModel);
         }
     }
 }

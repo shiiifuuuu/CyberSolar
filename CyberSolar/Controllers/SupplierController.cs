@@ -10,21 +10,21 @@ using CyberSolar.MODEL.Model;
 
 namespace CyberSolar.Controllers
 {
-    public class CategoryController : Controller
+    public class SupplierController : Controller
     {
-        CategoryManager _categoryManager = new CategoryManager();
-        Category _category = new Category();
+        SupplierManager _supplierManager = new SupplierManager();
+        Supplier _supplier = new Supplier();
 
         [HttpGet]
         public ActionResult Add()
         {
-            CategoryViewModel categoryViewModel = new CategoryViewModel();
-            categoryViewModel.Categories = _categoryManager.GetAll();
-            return View(categoryViewModel);
+            SupplierViewModel supplierViewModel = new SupplierViewModel();
+            supplierViewModel.Suppliers = _supplierManager.GetAll();
+            return View(supplierViewModel);
         }
 
         [HttpPost]
-        public ActionResult Add(CategoryViewModel categoryViewModel)
+        public ActionResult Add(SupplierViewModel supplierViewModel)
         {
             //default method
             //Category category = new Category();
@@ -32,26 +32,24 @@ namespace CyberSolar.Controllers
             //category.Name = categoryViewModel.Name;
 
             //automapper method
-            Category category = Mapper.Map<Category>(categoryViewModel);
+            Supplier supplier = Mapper.Map<Supplier>(supplierViewModel);
 
             string message = "";
 
             if (ModelState.IsValid)
             {
-                if (_categoryManager.Add(category))
+                if (_supplierManager.Add(supplier))
                 {
                     message += "Saved!";
-                    ModelState.Clear();
-                    return View();
                 }
                 else
                 {
                     message += "Not Saved!!";
                 }
             }
-            categoryViewModel.Categories = _categoryManager.GetAll();
+            supplierViewModel.Suppliers = _supplierManager.GetAll();
             ViewBag.Message = message;
-            return View(categoryViewModel);
+            return View(supplierViewModel);
         }
     }
 }

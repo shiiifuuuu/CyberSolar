@@ -22,6 +22,15 @@ namespace CyberSolar
             {
                 cfg.CreateMap<CategoryViewModel, Category>();
                 cfg.CreateMap<Category, CategoryViewModel>();
+
+                cfg.CreateMap<ProductViewModel, Product>();
+                cfg.CreateMap<Product, ProductViewModel>();
+
+                cfg.CreateMap<CustomerViewModel, Customer>();
+                cfg.CreateMap<Customer, CustomerViewModel>();
+
+                cfg.CreateMap<SupplierViewModel, Supplier>();
+                cfg.CreateMap<Supplier, SupplierViewModel>();
             });
         }
     }

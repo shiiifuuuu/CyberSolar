@@ -16,5 +16,25 @@ namespace CyberSolar.BLL.Manager
         {
             return _productRepository.Add(product);
         }
+
+        public bool Delete(int id)
+        {
+            return _productRepository.Delete(id);
+        }
+
+        public bool Update(Product product)
+        {
+            return _productRepository.Update(product);
+        }
+
+        public List<Product> GetAll()
+        {
+            return _productRepository.GetAll();
+        }
+
+        public Product GetById(int id)
+        {
+            return _productRepository.GetById(id);
+        }
     }
 }

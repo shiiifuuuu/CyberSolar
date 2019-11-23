@@ -15,8 +15,38 @@ namespace CyberSolar.DAL.Repository
         public bool Add(Product product)
         {
             dbContext.Products.Add(product);
-            
-            return dbContext.SaveChanges()>0; //returns true if condition ok
+
+            return dbContext.SaveChanges() > 0;
+        }
+
+        public bool Delete(int id)
+        {
+            Product aProduct = dbContext.Products.FirstOrDefault(c => c.Id == id);
+            dbContext.Products.Remove(aProduct);
+
+            return dbContext.SaveChanges() > 0;
+        }
+
+        public bool Update(Product product)
+        {
+            Product aProduct = dbContext.Products.FirstOrDefault(c => c.Id == product.Id);
+            if (aProduct != null)
+            {
+                aProduct.Name = product.Name;
+                aProduct.Code = product.Code;
+            }
+
+            return dbContext.SaveChanges() > 0;
+        }
+
+        public List<Product> GetAll()
+        {
+            return dbContext.Products.ToList();
+        }
+
+        public Product GetById(int id)
+        {
+            return dbContext.Products.FirstOrDefault(c => c.Id == id);
         }
     }
 }

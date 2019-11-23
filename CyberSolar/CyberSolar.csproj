@@ -106,16 +106,25 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SupplierViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Category\Add.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\Customer\Add.cshtml" />
+    <Content Include="Views\Supplier\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -130,6 +139,10 @@
     <ProjectReference Include="..\CyberSolar.BLL\CyberSolar.BLL.csproj">
       <Project>{9cafb03d-c810-4715-b105-0f57aec4c5d4}</Project>
       <Name>CyberSolar.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CyberSolar.DAL\CyberSolar.DAL.csproj">
+      <Project>{21990BDF-454F-448B-801B-3013296358CA}</Project>
+      <Name>CyberSolar.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\CyberSolar.MODEL\CyberSolar.MODEL.csproj">
       <Project>{19dd9224-824a-474c-b38c-50ef6eb7581c}</Project>

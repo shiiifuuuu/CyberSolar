@@ -12,7 +12,7 @@ namespace CyberSolar.Models
         public int Id { set; get; }
 
         [Required(ErrorMessage = "Code required!!")]
-        [MinLength(4, ErrorMessage = "4 characters required!")]
+        [MinLength(4, ErrorMessage = "4 characters required!"), MaxLength(4, ErrorMessage = "Must be 4 characters!")]
         public string Code { set; get; }
 
         [Required(ErrorMessage = "Name required!!")]

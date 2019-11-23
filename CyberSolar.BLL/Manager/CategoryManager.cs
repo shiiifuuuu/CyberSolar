@@ -12,9 +12,9 @@ namespace CyberSolar.BLL.Manager
     {
         CategoryRepository _categoryRepository = new CategoryRepository();
 
-        public bool Add(Category category)
+        public bool Add(Category customer)
         {
-            return _categoryRepository.Add(category);
+            return _categoryRepository.Add(customer);
         }
 
         public bool Delete(int id)
@@ -22,9 +22,9 @@ namespace CyberSolar.BLL.Manager
             return _categoryRepository.Delete(id);
         }
 
-        public bool Update(Category category)
+        public bool Update(Category customer)
         {
-            return _categoryRepository.Update(category);
+            return _categoryRepository.Update(customer);
         }
 
         public List<Category> GetAll()
