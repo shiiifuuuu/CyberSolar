@@ -2,7 +2,8 @@
 @model CyberSolar.Models.CategoryViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -44,68 +45,49 @@
 </head>
 
 <body class="content">
-<div>
-    <h1 class="subject">Category Information</h1>
-    <form method="post">
-        <table style="width: 70%; margin: auto">
+    <div>
+        <h1 class="subject">Category Information</h1>
+        <form method="post">
+            <table style="width: 70%; margin: auto">
 
-            <tr>
-                @*<td>Code:</td>*@
-                <td>@Html.LabelFor(c=>c.Code)</td>
-                @*<td><input type="text" name="Code" value="@Model.Code"/></td>*@
-                @*<td>@Html.TextBox("Code", Model.Code)</td>*@ @*Weakly Bound*@
-                <td>@Html.TextBoxFor(c=>c.Code, Model.Code)</td> @*Strongly Bound*@
-                <td class="errorMessage">@Html.ValidationMessageFor(c=>c.Code)</td>
-            </tr>
-            <tr>
-                @*<td>Name:</td>*@
-                <td>@Html.LabelFor(c=>c.Name)</td>
-                @*<td><input type="text" name="Name" value="@Model.Name"/></td>*@
-                <td>@Html.TextBoxFor(c=>c.Name, Model.Name)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c=>c.Name)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Save"/></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <h2>@ViewBag.Message</h2>
-                    }
-                </td>
-                <td></td>
-            </tr>
+                <tr>
+                    @*<td>Code:</td>*@
+                    <td>@Html.LabelFor(c => c.Code)</td>
+                    @*<td><input type="text" name="Code" value="@Model.Code"/></td>*@
+                    @*<td>@Html.TextBox("Code", Model.Code)</td>*@ @*Weakly Bound*@
+                    <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td> @*Strongly Bound*@
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                </tr>
+                <tr>
+                    @*<td>Name:</td>*@
+                    <td>@Html.LabelFor(c => c.Name)</td>
+                    @*<td><input type="text" name="Name" value="@Model.Name"/></td>*@
+                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Save" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @if (ViewBag.Message != null)
+                        {
+                            <h2>@ViewBag.Message</h2>
+                        }
+                    </td>
+                    <td></td>
+                </tr>
 
-        </table>
-    </form>
-    <p></p>
-    <table>
-        <tr>
-            <th>SI</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Action</th>
-        </tr>
-        @{ int sl = 0;}
-        @foreach (var category in Model.Categories)
-        {
-            <tr>
-                <td>@(++sl)</td>
-                <td>@category.Code</td>
-                <td>@category.Name</td>
-                <td>
-                    <span style="color: blue; font-weight: bold">Edit</span> /
-                    <span style="color: red; font-weight: bold">Delete</span>
-                </td>
-            </tr>
+            </table>
+        </form>
+        <p></p>
+        @{
+            Html.RenderPartial("~/Views/Shared/category/_CategoryDetails.cshtml", Model);
         }
-        
-    </table>
-</div>
+    </div>
 
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>

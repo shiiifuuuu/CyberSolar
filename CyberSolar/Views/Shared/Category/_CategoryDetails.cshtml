@@ -1,0 +1,29 @@
+﻿@model CyberSolar.Models.CategoryViewModel
+<table>
+    <tr>
+        <th>SI</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    @{ int sl = 0;}
+    @foreach (var category in Model.Categories)
+    {
+    <tr>
+        <td>@(++sl)</td>
+        <td>@category.Code</td>
+        <td>@category.Name</td>
+        @*<td>
+            <span style="color: blue; font-weight: bold">Edit</span> /
+            <span style="color: red; font-weight: bold">Delete</span>
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Category", new { Id = category.Id }, null)
+            |
+            @Html.ActionLink("Delete", "Delete", "Category", new { Id = category.Id }, null)
+        </td>
+    </tr>
+    }
+
+</table>
+
