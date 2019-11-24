@@ -1,0 +1,34 @@
+﻿@model CyberSolar.Models.SupplierViewModel
+
+<table>
+    <tr>
+        <th>SI</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Contact Person</th>
+        <th>Action</th>
+    </tr>
+    @{ int sl = 0;}
+    @foreach (var supplier in Model.Suppliers)
+    {
+        <tr>
+            <td>@(++sl)</td>
+            <td>@supplier.Code</td>
+            <td>@supplier.Name</td>
+            <td>@supplier.Address</td>
+            <td>@supplier.Email</td>
+            <td>@supplier.Contact</td>
+            <td>@supplier.ContactPerson</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Supplier", new { Id = supplier.Id }, null)
+                |
+                @Html.ActionLink("Delete", "Delete", "Supplier", new { Id = supplier.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+

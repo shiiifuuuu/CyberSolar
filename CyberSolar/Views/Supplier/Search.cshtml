@@ -1,17 +1,15 @@
-﻿@model CyberSolar.Models.CategoryViewModel
+﻿@model CyberSolar.Models.SupplierViewModel
 @{
-    /**/
-
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @*<!DOCTYPE html>
 
-    <html>*@
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Category Information</title>
+    <title>Supplier Information</title>*@
     <style>
         table {
             font-family: arial, sans-serif;
@@ -45,23 +43,13 @@
             font-weight: bold;
         }
     </style>
-</head>
+@*</head>*@
+
 <body class="content">
     <div>
-        <h1 class="subject">Category Information</h1>
+        <h1 class="subject">Supplier Information</h1>
         <form method="post">
             <table style="width: 70%; margin: auto">
-                @*<tr>
-                        <td>Code:</td>
-                        <td>@Html.TextBox("Code", Model.Code)</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td>@Html.TextBox("Name", Model.Name)</td>
-                        <td></td>
-                    </tr>*@
-
                 <tr>
                     <td>Search: @Html.TextBox("SearchText")</td>
                     <td><input type="submit" value="search" /></td>
@@ -72,15 +60,33 @@
                         }
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Search" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @if (ViewBag.Message != null)
+                        {
+                            <h2>@ViewBag.Message</h2>
+                        }
+                    </td>
+                    <td></td>
+                </tr>
+
             </table>
         </form>
+        <p></p>
         @{
-            Html.RenderPartial("~/Views/Shared/Category/_CategoryDetails.cshtml", Model);
+            Html.RenderPartial("~/Views/Shared/Supplier/_SupplierDetails.cshtml", Model);
         }
     </div>
 
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 </body>
-@*    </html>*@
+@*</html>*@

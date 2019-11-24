@@ -27,9 +27,9 @@ namespace CyberSolar.BLL.Manager
         {
             return _supplierRepository.GetAll();
         }
-        public Supplier GetByID(int id)
+        public Supplier GetById(int id)
         {
-            return _supplierRepository.GetBy(id);
+            return _supplierRepository.GetById(id);
         }
     }
 }

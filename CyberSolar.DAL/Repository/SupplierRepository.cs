@@ -51,7 +51,7 @@ namespace CyberSolar.DAL.Repository
             return dbContext.Suppliers.ToList();
         }
 
-        public Supplier GetBy(int id)
+        public Supplier GetById(int id)
         {
             return dbContext.Suppliers.First(c => c.Id == id);
         }

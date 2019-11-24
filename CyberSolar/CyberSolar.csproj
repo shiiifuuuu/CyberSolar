@@ -152,6 +152,10 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Shared\Product\_ProductDetails.cshtml" />
+    <Content Include="Views\Shared\Supplier\_SupplierDetails.cshtml" />
+    <Content Include="Views\Supplier\Search.cshtml" />
+    <Content Include="Views\Supplier\Edit.cshtml" />
+    <Content Include="Views\Supplier\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
