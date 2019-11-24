@@ -1,6 +1,7 @@
 ﻿@model CyberSolar.Models.ProductViewModel
 @{
-    Layout = null;
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -51,8 +52,8 @@
             <table style="width: 70%; margin: auto">
 
                 <tr>
-                    <td>@Html.LabelFor(c=>c.CategoryId)</td>
-                    <td>@Html.DropDownListFor(c=>c.CategoryId, Model.CategorySelectListItems)</td>
+                    <td>@Html.LabelFor(c => c.CategoryId)</td>
+                    <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems)</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -61,13 +62,13 @@
                     <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(c=>c.Name)</td>
-                    <td>@Html.TextBoxFor(c=>c.Name, Model.Name)</td>
+                    <td>@Html.LabelFor(c => c.Name)</td>
+                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
                     <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.ReorderLevel)</td>
-                    <td>@Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel=10)</td>
+                    <td>@Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)</td>
                     <td class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</td>
                 </tr>
                 <tr>
@@ -95,37 +96,10 @@
         </form>
 
         <p></p>
+        @{
+            Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
+        }
 
-        <table>
-            <tr>
-                <th>SI</th>
-                <th>Code</th>
-                <th>Name</th>
-                @*<th>CategoryId</th>*@
-                <th>Category Name</th>
-                <th>Reorder Label</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-            @{ int sl = 0;}
-            @foreach (var product in Model.Products)
-            {
-                <tr>
-                    <td>@(++sl)</td>
-                    <td>@product.Code</td>
-                    <td>@product.Name</td>
-                    @*<td>@product.CategoryId</td>*@
-                    <td>@product.CategoryName</td>
-                    <td>@product.ReorderLevel</td>
-                    <td>@product.Description</td>
-                    <td>
-                        <span style="color: blue; font-weight: bold">Edit</span> /
-                        <span style="color: red; font-weight: bold">Delete</span>
-                    </td>
-                </tr>
-            }
-
-        </table>
     </div>
     
 @*Validation Check*@

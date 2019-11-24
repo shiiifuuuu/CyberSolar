@@ -1,4 +1,4 @@
-﻿@model CyberSolar.Models.CategoryViewModel
+﻿@model CyberSolar.Models.ProductViewModel
 @{
     /**/
 
@@ -8,47 +8,47 @@
 
 @*<!DOCTYPE html>
 
-    <html>*@
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Category Information</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+        <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Category Information</title>*@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 
-        .subject {
-            text-align: center;
-            color: darkgreen;
-            font-size: 70px;
-        }
+    .subject {
+        text-align: center;
+        color: darkgreen;
+        font-size: 70px;
+    }
 
-        .content {
-            max-width: 80%;
-            margin: auto;
-        }
+    .content {
+        max-width: 80%;
+        margin: auto;
+    }
 
-        .errorMessage {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    .errorMessage {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 </head>
 <body class="content">
     <div>
-        <h1 class="subject">Category Information</h1>
+        <h1 class="subject">Product Information</h1>
         <form method="post">
             <table>
                 @*<tr>
@@ -75,7 +75,7 @@
             </table>
         </form>
         @{
-            Html.RenderPartial("~/Views/Shared/Category/_CategoryDetails.cshtml", Model);
+            Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
         }
     </div>
 

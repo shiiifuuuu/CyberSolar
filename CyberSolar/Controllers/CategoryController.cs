@@ -51,6 +51,7 @@ namespace CyberSolar.Controllers
             ViewBag.Message = message;
             return View(categoryViewModel);
         }
+
         [HttpGet]
         public ActionResult Search()
         {
@@ -62,25 +63,42 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(CategoryViewModel categoryViewModel)
+        public ActionResult Search(string searchText)
         {
             var categories = _categoryManager.GetAll();
 
-            if (categoryViewModel.Code != null)
+            if (searchText != null)
             {
-                categories = categories.Where(c => c.Code.Contains(categoryViewModel.Code)).ToList();
+                categories = categories.Where(c => c.Code.Contains(searchText) || c.Name.ToLower().Contains(searchText.ToLower())).ToList();
+                //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
             }
-
-            if (categoryViewModel.Name != null)
-            {
-                categories = categories.Where(c => c.Name.ToLower().Contains(categoryViewModel.Name.ToLower())).ToList();
-            }
-
+            
+            CategoryViewModel categoryViewModel = new CategoryViewModel();
             categoryViewModel.Categories = categories;
-
 
             return View(categoryViewModel);
         }
+
+        //[HttpPost]
+        //public ActionResult Search(CategoryViewModel categoryViewModel)
+        //{
+        //    var categories = _categoryManager.GetAll();
+
+        //    if (categoryViewModel.Code != null)
+        //    {
+        //        categories = categories.Where(c => c.Code.Contains(categoryViewModel.Code)).ToList();
+        //    }
+
+        //    if (categoryViewModel.Name != null)
+        //    {
+        //        categories = categories.Where(c => c.Name.ToLower().Contains(categoryViewModel.Name.ToLower())).ToList();
+        //    }
+
+        //    categoryViewModel.Categories = categories;
+
+
+        //    return View(categoryViewModel);
+        //}
 
         [HttpGet]
         public ActionResult Edit(int id)

@@ -20,5 +20,6 @@ namespace CyberSolar.Models
         public string Name { set; get; }
 
         public List<Category> Categories { set; get; }
+        public string SearchText { set; get; }
     }
 }

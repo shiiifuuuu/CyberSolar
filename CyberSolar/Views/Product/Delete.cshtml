@@ -1,4 +1,4 @@
-﻿@model CyberSolar.Models.CategoryViewModel
+﻿@model CyberSolar.Models.ProductViewModel
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -47,38 +47,55 @@
 @*</head>*@
 <body class="content">
     <div>
-        <h1 class="subject">Category Information</h1>
+        <h1 class="subject">Product Information</h1>
 
         <form method="post">
             <table style="width: 70%; margin: auto">
                 <tr>
-                    <td>Code:</td>
-                    @*<td><input type="text" name="RollNo" value="@Model.RollNo" /></td>*@
-                    <td>@Html.TextBox("Code", Model.Code)</td>
-                    <td>@Html.ValidationMessageFor(c => c.Code)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Name):</td>
-                    @*<td><input type="text" name="Name" value="@Model.Name" /></td>*@
-                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
+                    <td>@Html.LabelFor(c => c.CategoryId)</td>
+                    @*<td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems)</td>*@
                     <td></td>
                 </tr>
-
                 <tr>
-                    <td>Name:</td>
+                    <td>@Html.LabelFor(c => c.Code)</td>
+                    <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Name)</td>
+                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.ReorderLevel)</td>
+                    <td>@Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)</td>
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Description)</td>
+                    <td>@Html.TextBoxFor(c => c.Description, Model.Description)</td>
+                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Description)</td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td><input type="submit" value="Delete" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td>
                         @if (ViewBag.Message != null)
                         {
                             <h2>@ViewBag.Message</h2>
                         }
                     </td>
+                    <td></td>
                 </tr>
             </table>
         </form>
         <p></p>
         @{
-            Html.RenderPartial("~/Views/Shared/Category/_CategoryDetails.cshtml", Model);
+            Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
         }
 
     </div>
@@ -87,7 +104,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-</bodyclass="content">
+</body>
 @*    </html>*@
 
 

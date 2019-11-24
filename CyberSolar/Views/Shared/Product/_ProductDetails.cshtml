@@ -1,0 +1,34 @@
+﻿@model CyberSolar.Models.ProductViewModel
+
+<table>
+    <tr>
+        <th>SI</th>
+        <th>Code</th>
+        <th>Name</th>
+        @*<th>CategoryId</th>*@
+        <th>Category Name</th>
+        <th>Reorder Label</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    @{ int sl = 0;}
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td>@(++sl)</td>
+            <td>@product.Code</td>
+            <td>@product.Name</td>
+            @*<td>@product.CategoryId</td>*@
+            <td>@product.CategoryName</td>
+            <td>@product.ReorderLevel</td>
+            <td>@product.Description</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Product", new { Id = product.Id }, null)
+                |
+                @Html.ActionLink("Delete", "Delete", "Product", new { Id = product.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
