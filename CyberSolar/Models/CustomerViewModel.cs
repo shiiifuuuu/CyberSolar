@@ -30,5 +30,8 @@ namespace CyberSolar.Models
         public Double LoyaltyPoint { get; set; }
 
         public List<Customer> Customers { set; get; }
+
+        public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Product/_CustomerDetails.cshtml";
     }
 }

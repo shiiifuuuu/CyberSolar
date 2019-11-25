@@ -36,5 +36,8 @@ namespace CyberSolar.Models
 
         public List<Product> Products { set; get; }
         public List<SelectListItem> CategorySelectListItems { set; get; }
+
+        public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Product/_ProductDetails.cshtml";
     }
 }

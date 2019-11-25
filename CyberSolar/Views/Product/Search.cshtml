@@ -2,8 +2,8 @@
 @{
     /**/
 
-    ViewBag.Title = "Search";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Product";
+    Layout = Model.SharedViewLayout;
 }
 
 @*<!DOCTYPE html>
@@ -63,8 +63,9 @@
                     </tr>*@
 
                 <tr>
-                    <td>Search: @Html.TextBox("SearchText")</td>
-                    <td><input type="submit" value="search" /></td>
+                    <td>Search: @Html.TextBox("SearchText")<input type="submit" value="search" /></td>
+                </tr>
+                <tr>
                     <td>
                         @if (ViewBag.Message != null)
                         {
@@ -75,7 +76,7 @@
             </table>
         </form>
         @{
-            Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
+            Html.RenderPartial(Model.SharedViewString, Model);
         }
     </div>
 

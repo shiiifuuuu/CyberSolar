@@ -31,5 +31,8 @@ namespace CyberSolar.Models
         public string ContactPerson { get; set; }
 
         public List<Supplier> Suppliers { set; get; }
+
+        public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Product/_SupplierDetails.cshtml";
     }
 }

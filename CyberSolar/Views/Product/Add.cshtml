@@ -1,15 +1,15 @@
 ﻿@model CyberSolar.Models.ProductViewModel
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Product";
+    Layout = Model.SharedViewLayout;
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Product Information</title>
+    <title>Product Information</title>*@
     <style>
         table {
             font-family: arial, sans-serif;
@@ -43,7 +43,7 @@
             font-weight: bold;
         }
     </style>
-</head>
+@*</head>*@
 
 <body class="content">
     <div>
@@ -54,50 +54,54 @@
                 <tr>
                     <td>@Html.LabelFor(c => c.CategoryId)</td>
                     <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems)</td>
-                    <td></td>
+                    
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Code)</td>
-                    <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Code, Model.Code)
+                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Name)</td>
-                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Name, Model.Name)
+                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.ReorderLevel)</td>
-                    <td>@Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)
+                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Description)</td>
-                    <td>@Html.TextBoxFor(c => c.Description, Model.Description)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Description)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Save" /></td>
-                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Description, Model.Description)
+                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Description)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
+                        <input type="submit" value="Save" />
                         @if (ViewBag.Message != null)
                         {
                             <h2>@ViewBag.Message</h2>
                         }
                     </td>
-                    <td></td>
                 </tr>
+                <tr></tr>
 
             </table>
         </form>
 
         <p></p>
         @{
-            Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
+            Html.RenderPartial(Model.SharedViewString, Model);
         }
 
     </div>
@@ -108,4 +112,4 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 </body>
-</html>
+@*</html>*@

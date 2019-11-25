@@ -1,7 +1,7 @@
 ﻿@model CyberSolar.Models.ProductViewModel
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Product";
+    Layout = Model.SharedViewLayout;
 }
 
 @*<!DOCTYPE html>
@@ -95,7 +95,7 @@
     </form>
     <p></p>
     @{
-        Html.RenderPartial("~/Views/Shared/Product/_ProductDetails.cshtml", Model);
+        Html.RenderPartial(Model.SharedViewString, Model);
     }
 
 </div>

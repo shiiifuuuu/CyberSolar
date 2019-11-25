@@ -144,18 +144,18 @@
     <Content Include="Views\Supplier\Add.cshtml" />
     <Content Include="Views\Category\Search.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Category\_CategoryDetails.cshtml" />
+    <Content Include="Views\_Shared\Category\_CategoryDetails.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
-    <Content Include="Views\Shared\Product\_ProductDetails.cshtml" />
-    <Content Include="Views\Shared\Supplier\_SupplierDetails.cshtml" />
+    <Content Include="Views\_Shared\Product\_ProductDetails.cshtml" />
+    <Content Include="Views\_Shared\Supplier\_SupplierDetails.cshtml" />
     <Content Include="Views\Supplier\Search.cshtml" />
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Delete.cshtml" />
+    <Content Include="Views\_Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

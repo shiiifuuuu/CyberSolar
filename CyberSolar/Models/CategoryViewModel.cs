@@ -21,5 +21,8 @@ namespace CyberSolar.Models
 
         public List<Category> Categories { set; get; }
         public string SearchText { set; get; }
+
+        public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Product/_CategoryDetails.cshtml";
     }
 }
