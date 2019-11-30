@@ -24,7 +24,7 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(CustomerViewModel _customerViewModel)
+        public ActionResult Add(CustomerViewModel customerViewModel)
         {
             //default method
             //Category category = new Category();
@@ -32,7 +32,7 @@ namespace CyberSolar.Controllers
             //category.Name = categoryViewModel.Name;
 
             //automapper method
-            Customer customer = Mapper.Map<Customer>(_customerViewModel);
+            Customer customer = Mapper.Map<Customer>(customerViewModel);
 
             string message = "";
 
@@ -41,7 +41,7 @@ namespace CyberSolar.Controllers
                 if (_customerManager.Add(customer))
                 {
                     message += "Saved!";
-                    ModelState.Clear();
+                    ModelState.Clear(); //sets the text box empty
                 }
                 else
                 {
@@ -50,10 +50,9 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            CustomerViewModel customerViewModel = new CustomerViewModel(); //sets the text box empty
-            customerViewModel.Customers = _customerManager.GetAll(); //sets the text box empty
-            
-            return View(customerViewModel);
+            CustomerViewModel emptyModel = new CustomerViewModel() { Customers = _customerManager.GetAll() }; //emptyTextbox
+
+            return View(emptyModel);
         }
 
         [HttpGet]
@@ -68,10 +67,12 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string searchText)
+        public ActionResult Search(CustomerViewModel customerViewModel)
         {
-            CustomerViewModel customerViewModel = new CustomerViewModel();
+            string searchText = customerViewModel.SearchText;
             string message = "";
+            CustomerViewModel resultModel = new CustomerViewModel();
+            
             if (!String.IsNullOrEmpty(searchText))
             {
                 var customers = _customerManager.GetAll();
@@ -82,8 +83,9 @@ namespace CyberSolar.Controllers
                 )
                 .ToList();
                 //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
-                customerViewModel.Customers = customers;
+                resultModel.Customers = customers;
                 message = customers.Count + " result found";
+                ModelState.Clear();
             }
             else
             {
@@ -92,7 +94,7 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            return View(customerViewModel);
+            return View(resultModel);
         }
 
         [HttpGet]
@@ -108,17 +110,18 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CustomerViewModel _customerViewModel)
+        public ActionResult Edit(CustomerViewModel customerViewModel)
         {
             string message = "";
 
             if (ModelState.IsValid)
             {
-                Customer customer = Mapper.Map<Customer>(_customerViewModel);
+                Customer customer = Mapper.Map<Customer>(customerViewModel);
 
                 if (_customerManager.Update(customer))
                 {
                     message = "Updated";
+                    ModelState.Clear();
                 }
                 else
                 {
@@ -131,10 +134,9 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            CustomerViewModel customerViewModel = new CustomerViewModel();
-            customerViewModel.Customers = _customerManager.GetAll();
+            CustomerViewModel emptyModel = new CustomerViewModel() { Customers = _customerManager.GetAll() };
 
-            return View(customerViewModel);
+            return View(emptyModel);
         }
 
 
@@ -151,17 +153,18 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(CustomerViewModel _customerViewModel)
+        public ActionResult Delete(CustomerViewModel customerViewModel)
         {
             string message = "";
 
             if (ModelState.IsValid)
             {
-                Customer customer = Mapper.Map<Customer>(_customerViewModel);
+                Customer customer = Mapper.Map<Customer>(customerViewModel);
 
                 if (_customerManager.Delete(customer.Id))
                 {
                     message = "Deleted";
+                    ModelState.Clear();
                 }
                 else
                 {
@@ -174,10 +177,9 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            CustomerViewModel customerViewModel = new CustomerViewModel();
-            customerViewModel.Customers = _customerManager.GetAll();
+            CustomerViewModel emptyModel = new CustomerViewModel(){Customers = _customerManager.GetAll()};
 
-            return View(customerViewModel);
+            return View(emptyModel);
         }
     }
 }

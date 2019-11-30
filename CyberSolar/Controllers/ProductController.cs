@@ -14,7 +14,6 @@ namespace CyberSolar.Controllers
     {
         ProductManager _productManager = new ProductManager();
         CategoryManager _categoryManager = new CategoryManager();
-        Product _product = new Product();
 
         private void CategoryDropDownLoad(ProductViewModel productViewModel)
         {
@@ -29,13 +28,22 @@ namespace CyberSolar.Controllers
             productViewModel.Products = _productManager.GetAll();
 
             CategoryDropDownLoad(productViewModel);
-
+            
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
+            
             return View(productViewModel);
         }
 
         [HttpPost]
         public ActionResult Add(ProductViewModel productViewModel)
         {
+            if (!String.IsNullOrEmpty(productViewModel.SearchText))
+            {
+                return RedirectToAction("Search", "Product", productViewModel);
+            }
             Product product = Mapper.Map<Product>(productViewModel); //first modify the Global.asax file
 
             var categories = _categoryManager.GetAll();
@@ -54,42 +62,55 @@ namespace CyberSolar.Controllers
                 if (_productManager.Add(product))
                 {
                     message += "Saved!";
+                    ModelState.Clear();
                 }
                 else
                 {
                     message += "Not Saved!!";
                 }
             }
-            productViewModel.Products = _productManager.GetAll();
-            CategoryDropDownLoad(productViewModel);
             ViewBag.Message = message;
-            return View(productViewModel);
+
+            ProductViewModel emptyModel = new ProductViewModel(){Products = _productManager.GetAll()};
+            CategoryDropDownLoad(emptyModel);
+            return View(emptyModel);
         }
 
-        [HttpGet]
-        public ActionResult Search()
+        //[HttpGet]
+        //public ActionResult Search()
+        //{
+        //    ProductViewModel productViewModel = new ProductViewModel();
+        //    productViewModel.Products = _productManager.GetAll();
+
+
+        //    return View(productViewModel);
+        //}
+
+        //[HttpPost]
+        public ActionResult Search(ProductViewModel productViewModel)
         {
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.Products = _productManager.GetAll();
-
-
-            return View(productViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult Search(string searchText)
-        {
+            string searchText = productViewModel.SearchText;
+            string message = "";
             var products = _productManager.GetAll();
-
-            if (searchText != null)
+            ProductViewModel resultModel = new ProductViewModel();
+            if (!String.IsNullOrEmpty(searchText))
             {
-                products = products.Where(c => c.Code.Contains(searchText) || c.Name.ToLower().Contains(searchText.ToLower()) || c.CategoryName.ToLower().Contains(searchText.ToLower())).ToList();
+                products = products.Where(c => c.Code.Contains(searchText) 
+                                               || c.Name.ToLower().Contains(searchText.ToLower()) 
+                                               || c.CategoryName.ToLower().Contains(searchText.ToLower())).ToList();
+                message = products.Count + " result found!";
+                resultModel.Products = products;
+                ModelState.Clear();
+            }
+            else
+            {
+                resultModel.Products = new List<Product>();
+                message = "0 result found!";
             }
 
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.Products = products;
+            ViewBag.Message = message;
 
-            return View(productViewModel);
+            return View(resultModel);
         }
 
         [HttpGet]
@@ -112,25 +133,25 @@ namespace CyberSolar.Controllers
             if (ModelState.IsValid)
             {
                 Product product = Mapper.Map<Product>(productViewModel);
-
+                CategoryDropDownLoad(productViewModel);
                 if (_productManager.Update(product))
                 {
                     message = "Updated";
+                    ModelState.Clear();
                 }
                 else
                 {
+
                     message = "Not Updated";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
-            ViewBag.Message = message;
-            productViewModel.Products = _productManager.GetAll();
-
-            return View(productViewModel);
+            TempData["Message"] = message;
+            return RedirectToAction("Add", "Product");
+            //ViewBag.Message = message;
+            //ProductViewModel emptyModel = new ProductViewModel() { Products = _productManager.GetAll() };
+            //CategoryDropDownLoad(emptyModel);
+            //return View(emptyModel);
         }
 
         [HttpGet]
@@ -153,7 +174,7 @@ namespace CyberSolar.Controllers
             if (ModelState.IsValid)
             {
                 Product product = Mapper.Map<Product>(productViewModel);
-
+                CategoryDropDownLoad(productViewModel);
                 if (_productManager.Delete(product.Id))
                 {
                     message = "Deleted";
@@ -163,15 +184,13 @@ namespace CyberSolar.Controllers
                     message = "Not Deleted";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
-            ViewBag.Message = message;
-            productViewModel.Products = _productManager.GetAll();
+            TempData["Message"] = message;
+            return RedirectToAction("Add", "Product");
 
-            return View(productViewModel);
+            //ViewBag.Message = message;
+            //productViewModel.Products = _productManager.GetAll();
+            //return View(productViewModel);
         }
     }
 }

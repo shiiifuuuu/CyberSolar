@@ -32,8 +32,11 @@ namespace CyberSolar.DAL.Repository
             Product aProduct = dbContext.Products.FirstOrDefault(c => c.Id == product.Id);
             if (aProduct != null)
             {
+                aProduct.CategoryId = product.CategoryId;
                 aProduct.Name = product.Name;
                 aProduct.Code = product.Code;
+                aProduct.ReorderLevel = product.ReorderLevel;
+                aProduct.Description = product.Description;
             }
 
             return dbContext.SaveChanges() > 0;

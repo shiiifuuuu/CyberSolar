@@ -4,7 +4,7 @@
     Layout = Model.SharedViewLayout;
 }
 
-@section MyStyle{
+@section MyStyles{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -37,6 +37,9 @@
             color: red;
             font-weight: bold;
         }
+        .result {
+            color: green;font-size: 30px;
+        }
     </style>
 }
 
@@ -47,25 +50,24 @@
     <form method="post">
         <table style="width: 70%; margin: auto">
             <tr>
-                <td>Code:</td>
-                @*<td><input type="text" name="RollNo" value="@Model.RollNo" /></td>*@
-                <td>@Html.TextBox("Code", Model.Code)</td>
-                <td>@Html.ValidationMessageFor(c => c.Code)</td>
+                <td>@Html.LabelFor(c=>c.Code)</td>
+                <td>@Html.TextBoxFor(c=>c.Code, Model.Code, new { @readonly = "readonly" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name):</td>
-                @*<td><input type="text" name="Name" value="@Model.Name" /></td>*@
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                <td></td>
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly" })</td>
             </tr>
 
             <tr>
-                <td>Name:</td>
+                <td></td>
                 <td><input type="submit" value="Delete" /></td>
+            </tr>
+            <tr>
+                <td></td>
                 <td>
                     @if (ViewBag.Message != null)
                     {
-                        <h2>@ViewBag.Message</h2>
+                        <p class="result">@ViewBag.Message</p>
                     }
                 </td>
             </tr>
@@ -78,7 +80,7 @@
 
 </div>
 
-@section MyScript{
+@section MyScripts{
     <script src="~/Scripts/jquery-1.8.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

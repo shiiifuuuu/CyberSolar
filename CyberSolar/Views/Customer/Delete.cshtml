@@ -1,10 +1,11 @@
-﻿@model CyberSolar.Models.CustomerViewModel
+﻿@using System.Globalization
+@model CyberSolar.Models.CustomerViewModel
 @{
     ViewBag.Title = "Customer Information";
     Layout = Model.SharedViewLayout;
 }
 
-@section MyStyle{
+@section MyStyles{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -37,6 +38,14 @@
             color: red;
             font-weight: bold;
         }
+        .result {
+            color: green;
+            font-size: 30px;
+        }
+        .result {
+            color: green;
+            font-size: 30px;
+        }
     </style>
 }
 
@@ -46,48 +55,49 @@
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
-                <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Code, Model.Code, new { @readonly = "readonly" })
+                </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name)</td>
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly" })
+                </td>
+                
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Address)</td>
-                <td>@Html.TextBoxFor(c => c.Address, Model.Address)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</td>
+                <td>@Html.TextBoxFor(c => c.Address, Model.Address, new { @readonly = "readonly" })</td>
+                
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Email)</td>
-                <td>@Html.TextBoxFor(c => c.Email, Model.Email)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
+                <td>@Html.TextBoxFor(c => c.Email, Model.Email, new { @readonly = "readonly" })</td>
+                
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Contact)</td>
-                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
+                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact, new { @readonly = "readonly" })</td>
+                
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.LoyaltyPoint)</td>
-                <td>@Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.LoyaltyPoint)</td>
+                <td>@Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint.ToString(CultureInfo.CurrentCulture), new {@readonly = "readonly"})</td>
+                
             </tr>
             <tr>
                 <td></td>
                 <td><input type="submit" value="Delete" /></td>
-                <td></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
                     @if (ViewBag.Message != null)
                     {
-                        <h2>@ViewBag.Message</h2>
+                        <p class="result">@ViewBag.Message</p>
                     }
                 </td>
-                <td></td>
             </tr>
 
         </table>
@@ -98,7 +108,7 @@
     }
 </div>
 
-@section MyScript{
+@section MyScripts{
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

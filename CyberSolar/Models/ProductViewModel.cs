@@ -16,15 +16,15 @@ namespace CyberSolar.Models
         public int CategoryId { set; get; }
         public Category Customer { set; get; } //Foreign Key Referrence
 
-
-        [MinLength(4, ErrorMessage = "Must be 4 characters!"),MaxLength(4, ErrorMessage = "Must be 4 characters!")]
-        [Required(ErrorMessage = "Required!")]
+        [StringLength(4, MinimumLength = 4, ErrorMessage = "field must be 4 characters")]
+        [Required(ErrorMessage = "required!!")]
         public string Code { set; get; }
 
         [Required(ErrorMessage = "Required!!")]
         [Display(Name = "Product Name")]
         public string Name { set; get; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "numeric value required!")]
         [Required(ErrorMessage = "Required!!")]
         [Display(Name = "Reorder Level")]
         public int ReorderLevel { set; get; }
@@ -39,5 +39,6 @@ namespace CyberSolar.Models
 
         public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
         public string SharedViewString = "~/Views/_Shared/Product/_ProductDetails.cshtml";
+        public string SearchText { set; get; }
     }
 }

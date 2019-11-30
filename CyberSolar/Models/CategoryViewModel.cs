@@ -11,8 +11,8 @@ namespace CyberSolar.Models
     {
         public int Id { set; get; }
 
-        [Required(ErrorMessage = "Code required!!")]
-        [MinLength(4, ErrorMessage = "4 characters required!"), MaxLength(4, ErrorMessage = "Must be 4 characters!")]
+        [StringLength(4, MinimumLength = 4, ErrorMessage = "field must be 4 characters")]
+        [Required(ErrorMessage = "required!!")]
         public string Code { set; get; }
 
         [Required(ErrorMessage = "Name required!!")]
@@ -20,6 +20,7 @@ namespace CyberSolar.Models
         public string Name { set; get; }
 
         public List<Category> Categories { set; get; }
+
         public string SearchText { set; get; }
 
         public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";

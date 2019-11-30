@@ -6,7 +6,7 @@
     Layout = Model.SharedViewLayout;
 }
 
-@section MyStyle{
+@section MyStyles{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -30,14 +30,13 @@
             font-size: 70px;
         }
 
-        .content {
-            max-width: 80%;
-            margin: auto;
-        }
-
         .errorMessage {
             color: red;
             font-weight: bold;
+        }
+
+        .result {
+            color: green;font-size: 30px;
         }
     </style>
 }
@@ -53,30 +52,33 @@
                 <td>@Html.LabelFor(c => c.Code)</td>
                 @*<td><input type="text" name="Code" value="@Model.Code"/></td>*@
                 @*<td>@Html.TextBox("Code", Model.Code)</td>*@ @*Weakly Bound*@
-                <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td> @*Strongly Bound*@
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Code, Model.Code)
+                    <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
+                </td> @*Strongly Bound*@
+                
             </tr>
             <tr>
                 @*<td>Name:</td>*@
                 <td>@Html.LabelFor(c => c.Name)</td>
                 @*<td><input type="text" name="Name" value="@Model.Name"/></td>*@
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Name, Model.Name)
+                    <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
+                </td>
             </tr>
             <tr>
                 <td></td>
                 <td><input type="submit" value="Save" /></td>
-                <td></td>
             </tr>
             <tr>
                 <td></td>
-                <td>
+                <td >
                     @if (ViewBag.Message != null)
                     {
-                        <h2>@ViewBag.Message</h2>
+                        <p class="result">@ViewBag.Message</p>
                     }
                 </td>
-                <td></td>
             </tr>
 
         </table>

@@ -4,12 +4,7 @@
     Layout = Model.SharedViewLayout;
 }
 
-@*<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Product Information</title>*@
+@section MyStyles{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -42,74 +37,86 @@
             color: red;
             font-weight: bold;
         }
-    </style>
-@*</head>*@
-
-<body class="content">
-    <div>
-        <h1 class="subject">Product Information</h1>
-        <form method="post">
-            <table style="width: 70%; margin: auto">
-
-                <tr>
-                    <td>@Html.LabelFor(c => c.CategoryId)</td>
-                    <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems)</td>
-                    
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Code)</td>
-                    <td>
-                        @Html.TextBoxFor(c => c.Code, Model.Code)
-                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Name)</td>
-                    <td>
-                        @Html.TextBoxFor(c => c.Name, Model.Name)
-                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.ReorderLevel)</td>
-                    <td>
-                        @Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)
-                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Description)</td>
-                    <td>
-                        @Html.TextBoxFor(c => c.Description, Model.Description)
-                        <span class="errorMessage">@Html.ValidationMessageFor(c => c.Description)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Save" />
-                        @if (ViewBag.Message != null)
-                        {
-                            <h2>@ViewBag.Message</h2>
-                        }
-                    </td>
-                </tr>
-                <tr></tr>
-
-            </table>
-        </form>
-
-        <p></p>
-        @{
-            Html.RenderPartial(Model.SharedViewString, Model);
+        .result {
+            color: green;
+            font-size: 30px;
         }
+    </style>
+}
 
-    </div>
-    
-@*Validation Check*@
+<div>
+    <h1 class="subject">Product Information</h1>
+    @*@Html.ActionLink("Search", "Edit", "Category", new { Id = category.Id }, null)*@
+    <form method="post">
+        <table style="width: 70%; margin: auto">
+            <tr>
+                <td>
+                    @Html.TextBoxFor(c => c.SearchText, Model.SearchText)
+                    <input type="submit" value="Search"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form method="post">
+        <table style="width: 70%; margin: auto">
+            <tr>
+                <td>@Html.LabelFor(c => c.CategoryId)</td>
+                <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems, "-Select-")</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Code)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Code, Model.Code)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Name)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Name, Model.Name)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.ReorderLevel)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.ReorderLevel, Model.ReorderLevel = 10)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.ReorderLevel)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Description)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Description, Model.Description)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Description)</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @if (ViewBag.Message != null)
+                    {
+                        <p class="result">@ViewBag.Message</p>
+                    }
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <p></p>
+    @{
+        Html.RenderPartial(Model.SharedViewString, Model);
+    }
+
+</div>
+
+@section MyScripts{
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-</body>
-@*</html>*@
+}

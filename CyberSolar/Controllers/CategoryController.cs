@@ -41,15 +41,18 @@ namespace CyberSolar.Controllers
                 if (_categoryManager.Add(category))
                 {
                     message += "Saved!";
+                    ModelState.Clear();
                 }
                 else
                 {
                     message += "Not Saved!!";
                 }
             }
-            categoryViewModel.Categories = _categoryManager.GetAll();
             ViewBag.Message = message;
-            return View(categoryViewModel);
+
+            CategoryViewModel emptyModel = new CategoryViewModel();
+            emptyModel.Categories = _categoryManager.GetAll();
+            return View(emptyModel);
         }
 
         [HttpGet]
@@ -63,20 +66,30 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string searchText)
+        public ActionResult Search(CategoryViewModel categoryViewModel)
         {
+            string searchText = categoryViewModel.SearchText;
+            string message = "";
             var categories = _categoryManager.GetAll();
 
             if (searchText != null)
             {
                 categories = categories.Where(c => c.Code.Contains(searchText) || c.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
+                message = categories.Count + " result found!";
+                ModelState.Clear();
             }
-            
-            CategoryViewModel categoryViewModel = new CategoryViewModel();
-            categoryViewModel.Categories = categories;
+            else
+            {
+                message = "0 result found!";
+            }
 
-            return View(categoryViewModel);
+            ViewBag.Message = message;
+
+            CategoryViewModel emptyModel = new CategoryViewModel();
+            emptyModel.Categories = categories;
+
+            return View(emptyModel);
         }
 
         //[HttpPost]
@@ -113,17 +126,18 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CategoryViewModel categoryViewModel)
+        public ActionResult Edit(CategoryViewModel _categoryViewModel)
         {
             string message = "";
 
             if (ModelState.IsValid)
             {
-                Category category = Mapper.Map<Category>(categoryViewModel);
+                Category category = Mapper.Map<Category>(_categoryViewModel);
 
                 if (_categoryManager.Update(category))
                 {
                     message = "Updated";
+                    ModelState.Clear();
                 }
                 else
                 {
@@ -136,7 +150,8 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            categoryViewModel.Categories = _categoryManager.GetAll();
+            CategoryViewModel categoryViewModel = new CategoryViewModel(){Categories = _categoryManager.GetAll() };
+            /*categoryViewModel.Categories = _categoryManager.GetAll()*/;
 
             return View(categoryViewModel);
         }
@@ -155,17 +170,18 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(CategoryViewModel categoryViewModel)
+        public ActionResult Delete(CategoryViewModel _categoryViewModel)
         {
             string message = "";
 
             if (ModelState.IsValid)
             {
-                Category category = Mapper.Map<Category>(categoryViewModel);
+                Category category = Mapper.Map<Category>(_categoryViewModel);
 
                 if (_categoryManager.Delete(category.Id))
                 {
                     message = "Deleted";
+                    ModelState.Clear();
                 }
                 else
                 {
@@ -178,7 +194,8 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            categoryViewModel.Categories = _categoryManager.GetAll();
+            CategoryViewModel categoryViewModel = new CategoryViewModel(){Categories = _categoryManager.GetAll()};
+            //_categoryViewModel.Categories = _categoryManager.GetAll();
 
             return View(categoryViewModel);
         }

@@ -11,8 +11,7 @@ namespace CyberSolar.Models
     {
         public int Id { get; set; }
 
-        [MinLength(4, ErrorMessage = "4 Characters required!")]
-        [MaxLength(4, ErrorMessage = "4 Characters required!")]
+        [StringLength(4, MinimumLength = 4, ErrorMessage = "field must be 4 characters")]
         [Required(ErrorMessage = "required!!")]
         public string Code { get; set; }
 
@@ -24,6 +23,9 @@ namespace CyberSolar.Models
         [Required(ErrorMessage = "required!!")]
         public string Email { get; set; }
 
+        [MinLength(11, ErrorMessage = "field must be 11 characters")]
+        [MaxLength(11,ErrorMessage = "field must be 11 characters")]
+        [Range(0, int.MaxValue, ErrorMessage = "Numeric value required")]
         [Required(ErrorMessage = "required!!")]
         public string Contact { get; set; }
 
@@ -33,5 +35,6 @@ namespace CyberSolar.Models
 
         public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
         public string SharedViewString = "~/Views/_Shared/Customer/_CustomerDetails.cshtml";
+        public string SearchText { set; get; }
     }
 }
