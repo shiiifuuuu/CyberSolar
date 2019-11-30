@@ -140,7 +140,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\Category\Add.cshtml" />
     <Content Include="Views\Product\Add.cshtml" />
-    <Content Include="Views\Customer\Add.cshtml" />
     <Content Include="Views\Supplier\Add.cshtml" />
     <Content Include="Views\Category\Search.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -156,6 +155,11 @@
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Delete.cshtml" />
     <Content Include="Views\_Shared\_Layout.cshtml" />
+    <Content Include="Views\Customer\Add.cshtml" />
+    <Content Include="Views\_Shared\Customer\_CustomerDetails.cshtml" />
+    <Content Include="Views\Customer\Search.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,32 @@
+﻿@model CyberSolar.Models.CustomerViewModel
+
+<table>
+    <tr>
+        <th>SI</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Loyalty Point</th>
+        <th>Action</th>
+    </tr>
+    @{ int sl = 0;}
+    @foreach (var customer in Model.Customers)
+    {
+        <tr>
+            <td>@(++sl)</td>
+            <td>@customer.Code</td>
+            <td>@customer.Name</td>
+            <td>@customer.Address</td>
+            <td>@customer.Email</td>
+            <td>@customer.Contact</td>
+            <td>@customer.LoyaltyPoint</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Customer", new { Id = customer.Id }, null)
+                |
+                @Html.ActionLink("Delete", "Delete", "Customer", new { Id = customer.Id }, null)
+            </td>
+        </tr>
+    }
+</table>

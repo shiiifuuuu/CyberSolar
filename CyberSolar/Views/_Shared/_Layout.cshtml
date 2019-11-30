@@ -7,6 +7,8 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
+    @RenderSection("MyStyle", false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,15 +27,21 @@
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p style="font-weight:bold; font-size: 30px;">&copy; @DateTime.Now.Year - CyberSolar</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    
+
+    @RenderBody()
+    
+
+    <hr/>
+    <footer>
+        <p style="font-weight: bold; font-size: 30px;">&copy; @DateTime.Now.Year - CyberSolar</p>
+    </footer>
+</div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @RenderSection("MyScript", false)
 </body>
 </html>

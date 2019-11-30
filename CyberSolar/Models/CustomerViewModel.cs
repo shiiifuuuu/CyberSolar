@@ -32,6 +32,6 @@ namespace CyberSolar.Models
         public List<Customer> Customers { set; get; }
 
         public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
-        public string SharedViewString = "~/Views/_Shared/Product/_CustomerDetails.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Customer/_CustomerDetails.cshtml";
     }
 }

@@ -1,6 +1,6 @@
-﻿@model CyberSolar.Models.SupplierViewModel
+﻿@model CyberSolar.Models.CustomerViewModel
 @{
-    ViewBag.Title = "Supplier";
+    ViewBag.Title = "Customer Information";
     Layout = Model.SharedViewLayout;
 }
 
@@ -41,7 +41,7 @@
 }
 
 <div>
-    <h1 class="subject">Supplier Information</h1>
+    <h1 class="subject">Customer Information</h1>
     <form method="post">
         <table style="width: 70%; margin: auto">
             <tr>
@@ -70,9 +70,9 @@
                 <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(c => c.ContactPerson)</td>
-                <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</td>
+                <td>@Html.LabelFor(c => c.LoyaltyPoint)</td>
+                <td>@Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.LoyaltyPoint)</td>
             </tr>
             <tr>
                 <td></td>
@@ -103,3 +103,4 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }
+

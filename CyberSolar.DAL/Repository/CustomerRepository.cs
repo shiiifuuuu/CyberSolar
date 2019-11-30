@@ -54,7 +54,7 @@ namespace CyberSolar.DAL.Repository
             return dbContext.Customers.ToList();
         }
 
-        public Customer GetBy(int id)
+        public Customer GetById(int id)
         {
             return dbContext.Customers.First(c => c.Id == id);
         }

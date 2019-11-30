@@ -23,6 +23,6 @@ namespace CyberSolar.Models
         public string SearchText { set; get; }
 
         public string SharedViewLayout = "~/Views/_Shared/_Layout.cshtml";
-        public string SharedViewString = "~/Views/_Shared/Product/_CategoryDetails.cshtml";
+        public string SharedViewString = "~/Views/_Shared/Category/_CategoryDetails.cshtml";
     }
 }
