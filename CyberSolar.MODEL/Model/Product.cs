@@ -10,8 +10,7 @@ namespace CyberSolar.MODEL.Model
     {
         public int Id { set; get; }
         public int CategoryId { set; get; }
-        public Category Customer { set; get; } //Foreign Key Referrence
-        public string CategoryName { set; get; } //for showing name instead of id in table
+        public Category Category { set; get; } //Foreign Key Referrence
         public string Code { set; get; }
         public string Name { set; get; }
         public int ReorderLevel { set; get; }

@@ -24,8 +24,7 @@ namespace CyberSolar.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.Products = _productManager.GetAll();
+            ProductViewModel productViewModel = new ProductViewModel(){Products = _productManager.GetAll()};
 
             CategoryDropDownLoad(productViewModel);
             
@@ -33,7 +32,7 @@ namespace CyberSolar.Controllers
             {
                 ViewBag.Message = TempData["Message"];
             }
-            
+
             return View(productViewModel);
         }
 
@@ -44,16 +43,8 @@ namespace CyberSolar.Controllers
             {
                 return RedirectToAction("Search", "Product", productViewModel);
             }
+
             Product product = Mapper.Map<Product>(productViewModel); //first modify the Global.asax file
-
-            var categories = _categoryManager.GetAll();
-            //Select Id, Name from Category where product.CategoryId=Id;
-            var qResult = from c in categories where c.Id == product.CategoryId select c;
-
-            foreach (var category in qResult)
-            {
-                product.CategoryName = category.Name;
-            }
 
             string message = "";
 
@@ -61,22 +52,22 @@ namespace CyberSolar.Controllers
             {
                 if (_productManager.Add(product))
                 {
-                    message += "Saved!";
+                    message = "Saved!";
                     ModelState.Clear();
                 }
                 else
                 {
-                    message += "Not Saved!!";
+                    message = "Not Saved!!";
                 }
             }
             ViewBag.Message = message;
 
-            ProductViewModel emptyModel = new ProductViewModel(){Products = _productManager.GetAll()};
+            ProductViewModel emptyModel = new ProductViewModel() { Products = _productManager.GetAll() };
             CategoryDropDownLoad(emptyModel);
             return View(emptyModel);
         }
 
-        //[HttpGet]
+        [HttpGet]
         //public ActionResult Search()
         //{
         //    ProductViewModel productViewModel = new ProductViewModel();
@@ -97,7 +88,7 @@ namespace CyberSolar.Controllers
             {
                 products = products.Where(c => c.Code.Contains(searchText) 
                                                || c.Name.ToLower().Contains(searchText.ToLower()) 
-                                               || c.CategoryName.ToLower().Contains(searchText.ToLower())).ToList();
+                                               || c.Category.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 message = products.Count + " result found!";
                 resultModel.Products = products;
                 ModelState.Clear();
@@ -148,10 +139,6 @@ namespace CyberSolar.Controllers
 
             TempData["Message"] = message;
             return RedirectToAction("Add", "Product");
-            //ViewBag.Message = message;
-            //ProductViewModel emptyModel = new ProductViewModel() { Products = _productManager.GetAll() };
-            //CategoryDropDownLoad(emptyModel);
-            //return View(emptyModel);
         }
 
         [HttpGet]
@@ -187,10 +174,24 @@ namespace CyberSolar.Controllers
 
             TempData["Message"] = message;
             return RedirectToAction("Add", "Product");
+        }
 
-            //ViewBag.Message = message;
-            //productViewModel.Products = _productManager.GetAll();
-            //return View(productViewModel);
+        public JsonResult IsCodeExists(string Code)
+        {
+            List<Product> products = _productManager.GetAll();
+            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
+
+            JsonResult isUnique = Json(products.All(c => c.Code != Code), JsonRequestBehavior.AllowGet);
+
+            return isUnique;
+        }
+
+        public JsonResult IsNameExists(string Name)
+        {
+            List<Product> products = _productManager.GetAll();
+            JsonResult isUnique = Json(products.All(c => c.Name != Name), JsonRequestBehavior.AllowGet);
+
+            return isUnique; // if isNotUnique then a error message will display
         }
     }
 }

@@ -12,14 +12,17 @@ namespace CyberSolar.Models
     {
         public int Id { set; get; }
 
+        [Required(ErrorMessage = "Select a Category")]
         [Display(Name = "Category")]
         public int CategoryId { set; get; }
-        public Category Customer { set; get; } //Foreign Key Referrence
+        public Category Category { set; get; } //Foreign Key Referrence
 
+        [Remote("IsCodeExists", "Product", ErrorMessage = "This Code already in use")]
         [StringLength(4, MinimumLength = 4, ErrorMessage = "field must be 4 characters")]
         [Required(ErrorMessage = "required!!")]
         public string Code { set; get; }
 
+        [Remote("IsNameExists", "Product", ErrorMessage = "This Name already in use")]
         [Required(ErrorMessage = "Required!!")]
         [Display(Name = "Product Name")]
         public string Name { set; get; }

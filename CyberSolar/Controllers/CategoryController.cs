@@ -199,5 +199,17 @@ namespace CyberSolar.Controllers
 
             return View(categoryViewModel);
         }
+
+        public JsonResult IsNameExists(string Name)
+        {
+            List<Category> categories = _categoryManager.GetAll();
+            return Json(!categories.Any(c => c.Name == Name), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsCodeExists(string Code)
+        {
+            List<Category> categories = _categoryManager.GetAll();
+            return Json(!categories.Any(c => c.Code == Code), JsonRequestBehavior.AllowGet);
+        }
     }
 }

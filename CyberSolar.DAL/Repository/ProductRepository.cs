@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CyberSolar.DatabaseContext.DatabaseContext;
 using CyberSolar.MODEL.Model;
 
@@ -44,7 +42,7 @@ namespace CyberSolar.DAL.Repository
 
         public List<Product> GetAll()
         {
-            return dbContext.Products.ToList();
+            return dbContext.Products.Include("Category").ToList();
         }
 
         public Product GetById(int id)

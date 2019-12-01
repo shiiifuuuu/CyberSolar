@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Product";
     Layout = Model.SharedViewLayout;
+    //HtmlHelper.ClientValidationEnabled = false;
+    //HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
 
 @section MyStyles{
@@ -56,14 +58,14 @@
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Code, Model.Code)
+                    @Html.TextBoxFor(c => c.Code, Model.Code, new{data_val = "false"})
                     <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
                 </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Name, Model.Name)
+                    @Html.TextBoxFor(c => c.Name, Model.Name, new{data_val = "false"})
                     <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
                 </td>
             </tr>

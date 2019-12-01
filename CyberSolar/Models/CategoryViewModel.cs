@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using CyberSolar.MODEL.Model;
 
 namespace CyberSolar.Models
@@ -11,10 +12,12 @@ namespace CyberSolar.Models
     {
         public int Id { set; get; }
 
+        [Remote("IsCodeExists", "Category", ErrorMessage = "This Code already in use")]
         [StringLength(4, MinimumLength = 4, ErrorMessage = "field must be 4 characters")]
         [Required(ErrorMessage = "required!!")]
         public string Code { set; get; }
 
+        [Remote("IsNameExists", "Category", ErrorMessage = "This Name already in use")]
         [Required(ErrorMessage = "Name required!!")]
         [Display(Name = "Category Name")]
         public string Name { set; get; }

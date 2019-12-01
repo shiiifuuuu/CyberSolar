@@ -46,7 +46,6 @@
 
 <div>
     <h1 class="subject">Product Information</h1>
-    @*@Html.ActionLink("Search", "Edit", "Category", new { Id = category.Id }, null)*@
     <form method="post">
         <table style="width: 70%; margin: auto">
             <tr>
@@ -61,7 +60,10 @@
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c => c.CategoryId)</td>
-                <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems, "-Select-")</td>
+                <td>
+                    @Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems, "-Select-")
+                    <br /><span class="errorMessage">@Html.ValidationMessageFor(c=>c.CategoryId)</span>
+                </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
@@ -118,5 +120,4 @@
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
 }
