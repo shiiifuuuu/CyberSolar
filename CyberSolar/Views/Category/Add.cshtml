@@ -46,6 +46,16 @@
     <h1 class="subject">Category Information</h1>
     <form method="post">
         <table style="width: 70%; margin: auto">
+            <tr>
+                <td>
+                    @Html.TextBoxFor(c => c.SearchText, Model.SearchText)
+                    <input type="submit" value="Search"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form method="post">
+        <table style="width: 70%; margin: auto">
 
             <tr>
                 @*<td>Code:</td>*@

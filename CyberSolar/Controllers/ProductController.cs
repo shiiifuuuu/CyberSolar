@@ -68,16 +68,6 @@ namespace CyberSolar.Controllers
         }
 
         [HttpGet]
-        //public ActionResult Search()
-        //{
-        //    ProductViewModel productViewModel = new ProductViewModel();
-        //    productViewModel.Products = _productManager.GetAll();
-
-
-        //    return View(productViewModel);
-        //}
-
-        //[HttpPost]
         public ActionResult Search(ProductViewModel productViewModel)
         {
             string searchText = productViewModel.SearchText;

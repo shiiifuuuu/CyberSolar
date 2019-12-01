@@ -51,11 +51,11 @@
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c=>c.Code)</td>
-                <td>@Html.TextBoxFor(c=>c.Code, Model.Code, new { @readonly = "readonly" })</td>
+                <td>@Html.TextBoxFor(c=>c.Code, Model.Code, new { @readonly = "readonly", data_val = "false" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name):</td>
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly" })</td>
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly", data_val = "false" })</td>
             </tr>
 
             <tr>

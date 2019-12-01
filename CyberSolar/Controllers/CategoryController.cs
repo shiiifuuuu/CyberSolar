@@ -13,26 +13,30 @@ namespace CyberSolar.Controllers
     public class CategoryController : Controller
     {
         CategoryManager _categoryManager = new CategoryManager();
-        Category _category = new Category();
 
         [HttpGet]
         public ActionResult Add()
         {
             CategoryViewModel categoryViewModel = new CategoryViewModel();
             categoryViewModel.Categories = _categoryManager.GetAll();
+
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View(categoryViewModel);
         }
 
         [HttpPost]
         public ActionResult Add(CategoryViewModel categoryViewModel)
         {
-            //default method
-            //Category category = new Category();
-            //category.Code = categoryViewModel.Code;
-            //category.Name = categoryViewModel.Name;
+            if (!String.IsNullOrEmpty(categoryViewModel.SearchText))
+            {
+                return RedirectToAction("Search", "Category", categoryViewModel);
+            }
 
-            //automapper method
             Category category = Mapper.Map<Category>(categoryViewModel);
+            category.Code = category.Code.ToUpper();
 
             string message = "";
 
@@ -56,62 +60,39 @@ namespace CyberSolar.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search()
-        {
-            CategoryViewModel categoryViewModel = new CategoryViewModel();
-            categoryViewModel.Categories = _categoryManager.GetAll();
-
-
-            return View(categoryViewModel);
-        }
-
-        [HttpPost]
+        //public ActionResult Search()
+        //{
+        //    CategoryViewModel categoryViewModel = new CategoryViewModel();
+        //    categoryViewModel.Categories = _categoryManager.GetAll();
+        //    return View(categoryViewModel);
+        //}
+        //[HttpPost]
         public ActionResult Search(CategoryViewModel categoryViewModel)
         {
             string searchText = categoryViewModel.SearchText;
             string message = "";
             var categories = _categoryManager.GetAll();
-
+            CategoryViewModel resultModel = new CategoryViewModel();
             if (searchText != null)
             {
-                categories = categories.Where(c => c.Code.Contains(searchText) || c.Name.ToLower().Contains(searchText.ToLower())).ToList();
+                categories = categories.Where(
+                        c => c.Code.ToLower().Contains(searchText.ToLower()) 
+                            || c.Name.ToLower().Contains(searchText.ToLower())
+                        ).ToList();
                 //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 message = categories.Count + " result found!";
+                resultModel.Categories = categories;
                 ModelState.Clear();
             }
             else
             {
+                resultModel.Categories = new List<Category>();
                 message = "0 result found!";
             }
-
             ViewBag.Message = message;
 
-            CategoryViewModel emptyModel = new CategoryViewModel();
-            emptyModel.Categories = categories;
-
-            return View(emptyModel);
+            return View(resultModel);
         }
-
-        //[HttpPost]
-        //public ActionResult Search(CategoryViewModel categoryViewModel)
-        //{
-        //    var categories = _categoryManager.GetAll();
-
-        //    if (categoryViewModel.Code != null)
-        //    {
-        //        categories = categories.Where(c => c.Code.Contains(categoryViewModel.Code)).ToList();
-        //    }
-
-        //    if (categoryViewModel.Name != null)
-        //    {
-        //        categories = categories.Where(c => c.Name.ToLower().Contains(categoryViewModel.Name.ToLower())).ToList();
-        //    }
-
-        //    categoryViewModel.Categories = categories;
-
-
-        //    return View(categoryViewModel);
-        //}
 
         [HttpGet]
         public ActionResult Edit(int id)
@@ -138,21 +119,17 @@ namespace CyberSolar.Controllers
                 {
                     message = "Updated";
                     ModelState.Clear();
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Category");
                 }
                 else
                 {
                     message = "Not Updated";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
             ViewBag.Message = message;
-            CategoryViewModel categoryViewModel = new CategoryViewModel(){Categories = _categoryManager.GetAll() };
-            /*categoryViewModel.Categories = _categoryManager.GetAll()*/;
-
+            CategoryViewModel categoryViewModel = new CategoryViewModel() { Categories = _categoryManager.GetAll() };
             return View(categoryViewModel);
         }
 
@@ -182,34 +159,34 @@ namespace CyberSolar.Controllers
                 {
                     message = "Deleted";
                     ModelState.Clear();
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Category");
                 }
                 else
                 {
                     message = "Not Deleted";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
             ViewBag.Message = message;
-            CategoryViewModel categoryViewModel = new CategoryViewModel(){Categories = _categoryManager.GetAll()};
-            //_categoryViewModel.Categories = _categoryManager.GetAll();
-
+            CategoryViewModel categoryViewModel = new CategoryViewModel() { Categories = _categoryManager.GetAll() };
             return View(categoryViewModel);
         }
 
         public JsonResult IsNameExists(string Name)
         {
             List<Category> categories = _categoryManager.GetAll();
-            return Json(!categories.Any(c => c.Name == Name), JsonRequestBehavior.AllowGet);
+            JsonResult isUnique = Json(categories.All(c => c.Name.ToLower() != Name.ToLower()), JsonRequestBehavior.AllowGet);
+
+            return isUnique;
         }
 
         public JsonResult IsCodeExists(string Code)
         {
             List<Category> categories = _categoryManager.GetAll();
-            return Json(!categories.Any(c => c.Code == Code), JsonRequestBehavior.AllowGet);
+            JsonResult isUnique = Json(categories.All(c => c.Code.ToLower() != Code.ToLower()), JsonRequestBehavior.AllowGet);
+
+            return isUnique;
         }
     }
 }

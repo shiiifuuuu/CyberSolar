@@ -47,19 +47,17 @@
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c=>c.Code, Model.Code)</td>
-                @*<td><input type="text" name="RollNo" value="@Model.RollNo" /></td>*@
-                <td>@Html.TextBox("Code", Model.Code) 
+                <td>@Html.TextBox("Code", Model.Code, new {data_val="false"}) 
                     <br/> <span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span></td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name):</td>
-                @*<td><input type="text" name="Name" value="@Model.Name" /></td>*@
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name) 
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new{data_val="false"}) 
                     <br/> <span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="update" /></td>
+                <td><input type="submit" value="Update" /></td>
             </tr>
             <tr>
                 <td></td>
