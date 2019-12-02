@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "Product";
     Layout = Model.SharedViewLayout;
-    //HtmlHelper.ClientValidationEnabled = false;
-    //HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
 
 @section MyStyles{
@@ -50,6 +48,7 @@
     <h1 class="subject">Product Information</h1>
 
     <form method="post">
+        <h2>Do you want to update this product value:</h2>
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c => c.CategoryId)</td>
@@ -58,14 +57,14 @@
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Code, Model.Code, new{data_val = "false"})
+                    @Html.TextBoxFor(c => c.Code, Model.Code, new {data_val = "false"})
                     <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
                 </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Name, Model.Name, new{data_val = "false"})
+                    @Html.TextBoxFor(c => c.Name, Model.Name, new {data_val = "false"})
                     <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
                 </td>
             </tr>
@@ -85,16 +84,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Update" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <p class="result">@ViewBag.Message</p>
-                    }
-                </td>
+                <td><input type="submit" value="Update"/></td>
             </tr>
         </table>
     </form>
@@ -102,7 +92,8 @@
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
-
+    <br />
+    @Html.ActionLink("Back to Home", "Add", "Product")
 </div>
 
 <script src="~/Scripts/jquery-1.8.0.min.js"></script>

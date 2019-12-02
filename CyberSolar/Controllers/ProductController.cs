@@ -39,11 +39,6 @@ namespace CyberSolar.Controllers
         [HttpPost]
         public ActionResult Add(ProductViewModel productViewModel)
         {
-            if (!String.IsNullOrEmpty(productViewModel.SearchText))
-            {
-                return RedirectToAction("Search", "Product", productViewModel);
-            }
-
             Product product = Mapper.Map<Product>(productViewModel); //first modify the Global.asax file
 
             string message = "";
@@ -67,7 +62,7 @@ namespace CyberSolar.Controllers
             return View(emptyModel);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Search(ProductViewModel productViewModel)
         {
             string searchText = productViewModel.SearchText;
@@ -76,9 +71,10 @@ namespace CyberSolar.Controllers
             ProductViewModel resultModel = new ProductViewModel();
             if (!String.IsNullOrEmpty(searchText))
             {
-                products = products.Where(c => c.Code.Contains(searchText) 
+                products = products.Where(c => c.Code.ToLower().Contains(searchText.ToLower()) 
                                                || c.Name.ToLower().Contains(searchText.ToLower()) 
-                                               || c.Category.Name.ToLower().Contains(searchText.ToLower())).ToList();
+                                               || c.Category.Name.ToLower().Contains(searchText.ToLower())
+                                         ).ToList();
                 message = products.Count + " result found!";
                 resultModel.Products = products;
                 ModelState.Clear();
@@ -119,16 +115,18 @@ namespace CyberSolar.Controllers
                 {
                     message = "Updated";
                     ModelState.Clear();
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Product");
                 }
                 else
                 {
-
                     message = "Not Updated";
                 }
             }
 
-            TempData["Message"] = message;
-            return RedirectToAction("Add", "Product");
+            ViewBag.Message = message;
+            ProductViewModel emptyModel = new ProductViewModel(){Products = new List<Product>()};
+            return View(emptyModel);
         }
 
         [HttpGet]
@@ -155,6 +153,8 @@ namespace CyberSolar.Controllers
                 if (_productManager.Delete(product.Id))
                 {
                     message = "Deleted";
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Product");
                 }
                 else
                 {
@@ -162,8 +162,9 @@ namespace CyberSolar.Controllers
                 }
             }
 
-            TempData["Message"] = message;
-            return RedirectToAction("Add", "Product");
+            ViewBag.Message = message;
+            ProductViewModel emptyModel = new ProductViewModel() { Products = new List<Product>() };
+            return View(emptyModel);
         }
 
         public JsonResult IsCodeExists(string Code)
