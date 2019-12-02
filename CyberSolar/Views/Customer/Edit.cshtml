@@ -47,71 +47,65 @@
 <div>
     <h1 class="subject">Customer Information</h1>
     <form method="post">
+        <h2>Do you want to update this customer values:</h2>
         <table style="width: 70%; margin: auto">
 
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Code, Model.Code)
-                    <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
+                    @Html.TextBoxFor(c => c.Code, Model.Code, new{data_val="false"})
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
                 </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(c => c.Name)</td>
-            <td>
-                @Html.TextBoxFor(c => c.Name, Model.Name)
-                <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(c => c.Address)</td>
-            <td>
-                @Html.TextBoxFor(c => c.Address, Model.Address)
-                <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(c => c.Email)</td>
-            <td>
-                @Html.TextBoxFor(c => c.Email, Model.Email)
-                <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(c => c.Contact)</td>
-            <td>
-                @Html.TextBoxFor(c => c.Contact, Model.Contact)
-                <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(c => c.LoyaltyPoint)</td>
-            <td>
-                @Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint)
-                <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.LoyaltyPoint)</span>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                @if (ViewBag.Message != null)
-                {
-                    <p class="result">@ViewBag.Message</p>
-                }
-            </td>
-        </tr>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Name)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Name, Model.Name)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Address)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Address, Model.Address)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Email)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Email, Model.Email, new{data_val="false"})
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Contact)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.Contact, Model.Contact, new{data_val = "false" })
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.LoyaltyPoint)</td>
+                <td>
+                    @Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint)
+                    <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.LoyaltyPoint)</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update"/></td>
+            </tr>
 
-    </table>
+        </table>
 
     </form>
     <p></p>
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
+    <br/>
+    @Html.ActionLink("Back to Home", "Add", "Customer")
 </div>
 
 @section MyScripts{

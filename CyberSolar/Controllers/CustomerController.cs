@@ -13,25 +13,24 @@ namespace CyberSolar.Controllers
     public class CustomerController : Controller
     {
         CustomerManager _customerManager = new CustomerManager();
-        Customer _customer = new Customer();
 
         [HttpGet]
         public ActionResult Add()
         {
             CustomerViewModel customerViewModel = new CustomerViewModel();
             customerViewModel.Customers = _customerManager.GetAll();
+
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
+
             return View(customerViewModel);
         }
 
         [HttpPost]
         public ActionResult Add(CustomerViewModel customerViewModel)
         {
-            //default method
-            //Category category = new Category();
-            //category.Code = categoryViewModel.Code;
-            //category.Name = categoryViewModel.Name;
-
-            //automapper method
             Customer customer = Mapper.Map<Customer>(customerViewModel);
 
             string message = "";
@@ -40,12 +39,12 @@ namespace CyberSolar.Controllers
             {
                 if (_customerManager.Add(customer))
                 {
-                    message += "Saved!";
+                    message = "Saved!";
                     ModelState.Clear(); //sets the text box empty
                 }
                 else
                 {
-                    message += "Not Saved!!";
+                    message = "Not Saved!!";
                 }
             }
 
@@ -55,16 +54,15 @@ namespace CyberSolar.Controllers
             return View(emptyModel);
         }
 
-        [HttpGet]
-        public ActionResult Search()
-        {
-            CustomerViewModel customerViewModel = new CustomerViewModel();
+        //[HttpGet]
+        //public ActionResult Search()
+        //{
+        //    CustomerViewModel customerViewModel = new CustomerViewModel();
 
-            customerViewModel.Customers = _customerManager.GetAll();
+        //    customerViewModel.Customers = _customerManager.GetAll();
 
-
-            return View(customerViewModel);
-        }
+        //    return View(customerViewModel);
+        //}
 
         [HttpPost]
         public ActionResult Search(CustomerViewModel customerViewModel)
@@ -80,8 +78,7 @@ namespace CyberSolar.Controllers
                 c.Name.ToLower().Contains(searchText.ToLower())
                 || c.Contact.ToLower().Contains(searchText.ToLower())
                 || c.Email.ToLower().Contains(searchText.ToLower())
-                )
-                .ToList();
+                ).ToList();
                 //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 resultModel.Customers = customers;
                 message = customers.Count + " result found";
@@ -122,15 +119,13 @@ namespace CyberSolar.Controllers
                 {
                     message = "Updated";
                     ModelState.Clear();
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Customer");
                 }
                 else
                 {
                     message = "Not Updated";
                 }
-            }
-            else
-            {
-                message = "Model State False!!";
             }
 
             ViewBag.Message = message;
@@ -165,21 +160,44 @@ namespace CyberSolar.Controllers
                 {
                     message = "Deleted";
                     ModelState.Clear();
+                    TempData["Message"] = message;
+                    return RedirectToAction("Add", "Customer");
                 }
                 else
                 {
                     message = "Not Deleted";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
             ViewBag.Message = message;
             CustomerViewModel emptyModel = new CustomerViewModel(){Customers = _customerManager.GetAll()};
 
             return View(emptyModel);
+        }
+
+        public JsonResult IsCodeExists(string code)
+        {
+            List<Customer> customers = _customerManager.GetAll();
+            JsonResult isUnique = Json(customers.All(c => c.Code != code), JsonRequestBehavior.AllowGet);
+
+            return isUnique;
+        }
+
+        public JsonResult IsEmailExists(string email)
+        {
+            List<Customer> customers = _customerManager.GetAll();
+            JsonResult isUnique = Json(customers.All(c => c.Email != email), JsonRequestBehavior.AllowGet);
+
+            return isUnique;
+        }
+
+        public JsonResult IsContactExists(string contact)
+        {
+            List<Customer> customers = _customerManager.GetAll();
+            JsonResult isUnique = Json(customers.All(c => c.Contact.ToString() != contact),
+                JsonRequestBehavior.AllowGet);
+
+            return isUnique;
         }
     }
 }

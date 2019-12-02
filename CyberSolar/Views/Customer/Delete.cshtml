@@ -1,8 +1,11 @@
 ﻿@using System.Globalization
 @model CyberSolar.Models.CustomerViewModel
 @{
-    ViewBag.Title = "Customer Information";
+    ViewBag.Title = "Delete";
     Layout = Model.SharedViewLayout;
+
+    Html.EnableUnobtrusiveJavaScript(false);
+    Html.EnableClientValidation(false);
 }
 
 @section MyStyles{
@@ -52,52 +55,44 @@
 <div>
     <h1 class="subject">Customer Information</h1>
     <form method="post">
+        <h2>Do you want to delete this customer:</h2>
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Code, Model.Code, new { @readonly = "readonly" })
+                    @Html.TextBoxFor(c => c.Code, Model.Code, new {@readonly = "readonly"})
                 </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name)</td>
                 <td>
-                    @Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly" })
+                    @Html.TextBoxFor(c => c.Name, Model.Name, new {@readonly = "readonly"})
                 </td>
-                
+
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Address)</td>
-                <td>@Html.TextBoxFor(c => c.Address, Model.Address, new { @readonly = "readonly" })</td>
-                
+                <td>@Html.TextBoxFor(c => c.Address, Model.Address, new {@readonly = "readonly"})</td>
+
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Email)</td>
-                <td>@Html.TextBoxFor(c => c.Email, Model.Email, new { @readonly = "readonly" })</td>
-                
+                <td>@Html.TextBoxFor(c => c.Email, Model.Email, new {@readonly = "readonly"})</td>
+
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Contact)</td>
-                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact, new { @readonly = "readonly" })</td>
-                
+                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact, new {@readonly = "readonly"})</td>
+
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.LoyaltyPoint)</td>
                 <td>@Html.TextBoxFor(c => c.LoyaltyPoint, Model.LoyaltyPoint.ToString(CultureInfo.CurrentCulture), new {@readonly = "readonly"})</td>
-                
+
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Delete" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <p class="result">@ViewBag.Message</p>
-                    }
-                </td>
+                <td><input type="submit" value="Delete"/></td>
             </tr>
 
         </table>
@@ -106,6 +101,8 @@
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
+    <br />
+    @Html.ActionLink("Back to Home", "Add", "Customer")
 </div>
 
 @section MyScripts{

@@ -1,7 +1,7 @@
 ﻿@model CyberSolar.Models.CustomerViewModel
 
 @{
-    ViewBag.Title = "Customer";
+    ViewBag.Title = "Add";
     Layout = Model.SharedViewLayout;
 }
 
@@ -42,11 +42,23 @@
              color: green;
              font-size: 30px;
          }
+         .searchBox {
+             margin: auto;
+             width: 70%;
+             text-align: right
+         }
      </style>
 }
 
 <div>
     <h1 class="subject">Customer Information</h1>
+    <form method="post">
+        <p class="searchBox">
+            @Html.TextBoxFor(c=>c.SearchText, Model.SearchText) 
+            <input type="submit" value="Search" formaction="Search"/>
+        </p>
+    </form>
+    <br/>
     <form method="post">
         <table style="width: 70%; margin: auto">
             
@@ -93,7 +105,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Save" /></td>
+                <td><input type="submit" value="Save"/></td>
             </tr>
             <tr>
                 <td></td>

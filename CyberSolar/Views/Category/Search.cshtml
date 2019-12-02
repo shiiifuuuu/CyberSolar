@@ -37,20 +37,14 @@
 <div>
     <h1 class="subject">Category Information</h1>
     <form method="post">
-        <table style="width: 70%; margin: auto">
-            <tr>
-                <td>@Html.TextBoxFor(c => c.SearchText, Model.SearchText) 
-                    <input type="submit" value="search" formaction="Search"/></td>
-            </tr>
-            <tr>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <p class="result">@ViewBag.Message</p>
-                    }
-                </td>
-            </tr>
-        </table>
+        <p class="searchBox">
+            @Html.TextBoxFor(c => c.SearchText, Model.SearchText)
+            <input type="submit" value="Search" formaction="Search" />
+        </p>
+        @if (ViewBag.Message != null)
+        {
+            <p class="result">@ViewBag.Message</p>
+        }
     </form>
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
