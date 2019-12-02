@@ -39,7 +39,8 @@
     <form method="post">
         <table style="width: 70%; margin: auto">
             <tr>
-                <td>@Html.TextBoxFor(c => c.SearchText, Model.SearchText) <input type="submit" value="search" /></td>
+                <td>@Html.TextBoxFor(c => c.SearchText, Model.SearchText) 
+                    <input type="submit" value="search" formaction="Search"/></td>
             </tr>
             <tr>
                 <td>
@@ -54,6 +55,8 @@
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
+    <br/>
+    @Html.ActionLink("Back to Home", "Add", "Category")
 </div>
 
 @section MyScripts{

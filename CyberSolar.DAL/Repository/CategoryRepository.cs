@@ -12,28 +12,28 @@ namespace CyberSolar.DAL.Repository
     {
         ProjectDbContext dbContext = new ProjectDbContext();
 
-        public bool Add(Category customer)
+        public bool Add(Category category)
         {
-            dbContext.Categories.Add(customer);
+            dbContext.Categories.Add(category);
 
             return dbContext.SaveChanges() > 0;
         }
 
         public bool Delete(int id)
         {
-            Category aCustomer = dbContext.Categories.FirstOrDefault(c => c.Id == id);
-            dbContext.Categories.Remove(aCustomer);
+            Category aCategory = dbContext.Categories.FirstOrDefault(c => c.Id == id);
+            dbContext.Categories.Remove(aCategory);
 
             return dbContext.SaveChanges() > 0;
         }
 
-        public bool Update(Category customer)
+        public bool Update(Category category)
         {
-            Category aCustomer = dbContext.Categories.FirstOrDefault(c => c.Id == customer.Id);
-            if (aCustomer != null)
+            Category aCategory = dbContext.Categories.FirstOrDefault(c => c.Id == category.Id);
+            if (aCategory != null)
             {
-                aCustomer.Name = customer.Name;
-                aCustomer.Code = customer.Code;
+                aCategory.Name = category.Name;
+                aCategory.Code = category.Code;
             }
 
             return dbContext.SaveChanges() > 0;

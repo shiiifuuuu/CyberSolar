@@ -30,11 +30,6 @@ namespace CyberSolar.Controllers
         [HttpPost]
         public ActionResult Add(CategoryViewModel categoryViewModel)
         {
-            if (!String.IsNullOrEmpty(categoryViewModel.SearchText))
-            {
-                return RedirectToAction("Search", "Category", categoryViewModel);
-            }
-
             Category category = Mapper.Map<Category>(categoryViewModel);
             category.Code = category.Code.ToUpper();
 
@@ -54,19 +49,18 @@ namespace CyberSolar.Controllers
             }
             ViewBag.Message = message;
 
-            CategoryViewModel emptyModel = new CategoryViewModel();
-            emptyModel.Categories = _categoryManager.GetAll();
+            CategoryViewModel emptyModel = new CategoryViewModel(){Categories = _categoryManager.GetAll()};
             return View(emptyModel);
         }
 
-        [HttpGet]
+        //[HttpGet]
         //public ActionResult Search()
         //{
         //    CategoryViewModel categoryViewModel = new CategoryViewModel();
         //    categoryViewModel.Categories = _categoryManager.GetAll();
         //    return View(categoryViewModel);
         //}
-        //[HttpPost]
+        [HttpPost]
         public ActionResult Search(CategoryViewModel categoryViewModel)
         {
             string searchText = categoryViewModel.SearchText;
@@ -107,13 +101,13 @@ namespace CyberSolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CategoryViewModel _categoryViewModel)
+        public ActionResult Edit(CategoryViewModel categoryViewModel)
         {
             string message = "";
 
             if (ModelState.IsValid)
             {
-                Category category = Mapper.Map<Category>(_categoryViewModel);
+                Category category = Mapper.Map<Category>(categoryViewModel);
 
                 if (_categoryManager.Update(category))
                 {
@@ -129,8 +123,8 @@ namespace CyberSolar.Controllers
             }
 
             ViewBag.Message = message;
-            CategoryViewModel categoryViewModel = new CategoryViewModel() { Categories = _categoryManager.GetAll() };
-            return View(categoryViewModel);
+            CategoryViewModel emptyModel = new CategoryViewModel() { Categories = _categoryManager.GetAll() };
+            return View(emptyModel);
         }
 
 

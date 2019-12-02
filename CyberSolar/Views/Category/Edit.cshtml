@@ -1,6 +1,6 @@
 ﻿@model CyberSolar.Models.CategoryViewModel
 @{
-    ViewBag.Title = "Category";
+    ViewBag.Title = "Edit";
     Layout = Model.SharedViewLayout;
 }
 
@@ -41,32 +41,23 @@
 }
 
 <div>
-    <h1 class="subject">Category Information</h1>
-
+    <h1 class="subject">Category Information</h1><br/>
     <form method="post">
+        <h3 style="color: red">Do you want to update this category values:</h3>
         <table style="width: 70%; margin: auto">
             <tr>
-                <td>@Html.LabelFor(c=>c.Code, Model.Code)</td>
-                <td>@Html.TextBox("Code", Model.Code, new {data_val="false"}) 
+                <td>@Html.LabelFor(c => c.Code):</td>
+                <td>@Html.TextBoxFor(c => c.Code, Model.Code, new {data_val = "false"})
                     <br/> <span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span></td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name):</td>
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new{data_val="false"}) 
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new {data_val = "false"})
                     <br/> <span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Update" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <h2>@ViewBag.Message</h2>
-                    }
-                </td>
+                <td><input type="submit" value="Update" name="action:Edit"/></td>
             </tr>
         </table>
     </form>
@@ -74,7 +65,8 @@
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
-
+    <br/>
+    @Html.ActionLink("Back to Home", "Add", "Category")
 </div>
 
 @section MyScripts{

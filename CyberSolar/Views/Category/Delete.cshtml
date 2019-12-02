@@ -1,6 +1,6 @@
 ﻿@model CyberSolar.Models.CategoryViewModel
 @{
-    ViewBag.Title = "Category";
+    ViewBag.Title = "Delete";
     Layout = Model.SharedViewLayout;
 }
 
@@ -48,19 +48,20 @@
     <h1 class="subject">Category Information</h1>
 
     <form method="post">
+        <h3 style="color: red">Do you want to Delete this category:</h3>
         <table style="width: 70%; margin: auto">
             <tr>
-                <td>@Html.LabelFor(c=>c.Code)</td>
-                <td>@Html.TextBoxFor(c=>c.Code, Model.Code, new { @readonly = "readonly", data_val = "false" })</td>
+                <td>@Html.LabelFor(c => c.Code):</td>
+                <td>@Html.TextBoxFor(c => c.Code, Model.Code, new {@readonly = "readonly", data_val = "false"})</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name):</td>
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly", data_val = "false" })</td>
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name, new {@readonly = "readonly", data_val = "false"})</td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><input type="submit" value="Delete" /></td>
+                <td><input type="submit" value="Delete" name="action:Delete"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -77,7 +78,8 @@
     @{
         Html.RenderPartial(Model.SharedViewString, Model);
     }
-
+    <br/>
+    @Html.ActionLink("Back to Home", "Add", "Category")
 </div>
 
 @section MyScripts{
