@@ -13,25 +13,24 @@ namespace CyberSolar.Controllers
     public class SupplierController : Controller
     {
         SupplierManager _supplierManager = new SupplierManager();
-        Supplier _supplier = new Supplier();
 
         [HttpGet]
         public ActionResult Add()
         {
             SupplierViewModel supplierViewModel = new SupplierViewModel();
             supplierViewModel.Suppliers = _supplierManager.GetAll();
+
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
+
             return View(supplierViewModel);
         }
 
         [HttpPost]
         public ActionResult Add(SupplierViewModel supplierViewModel)
         {
-            //default method
-            //Category category = new Category();
-            //category.Code = categoryViewModel.Code;
-            //category.Name = categoryViewModel.Name;
-
-            //automapper method
             Supplier supplier = Mapper.Map<Supplier>(supplierViewModel);
 
             string message = "";
@@ -40,31 +39,36 @@ namespace CyberSolar.Controllers
             {
                 if (_supplierManager.Add(supplier))
                 {
-                    message += "Saved!";
+                    message = "Saved!";
+                    ModelState.Clear();
                 }
                 else
                 {
-                    message += "Not Saved!!";
+                    message = "Not Saved!!";
                 }
             }
-            supplierViewModel.Suppliers = _supplierManager.GetAll();
+
             ViewBag.Message = message;
-            return View(supplierViewModel);
+            SupplierViewModel emptyModel = new SupplierViewModel() { Suppliers = _supplierManager.GetAll() };
+            
+            return View(emptyModel);
         }
 
-        [HttpGet]
-        public ActionResult Search()
-        {
-            SupplierViewModel supplierViewModel = new SupplierViewModel();
-            supplierViewModel.Suppliers = _supplierManager.GetAll();
+        //[HttpGet]
+        //public ActionResult Search()
+        //{
+        //    SupplierViewModel supplierViewModel = new SupplierViewModel();
+        //    supplierViewModel.Suppliers = _supplierManager.GetAll();
 
 
-            return View(supplierViewModel);
-        }
+        //    return View(supplierViewModel);
+        //}
 
         [HttpPost]
-        public ActionResult Search(string searchText)
+        public ActionResult Search(SupplierViewModel supplierViewModel)
         {
+            string searchText = supplierViewModel.SearchText;
+            string message = "";
             var suppliers = _supplierManager.GetAll();
 
             if (searchText != null)
@@ -75,13 +79,14 @@ namespace CyberSolar.Controllers
                 || c.Email.ToLower().Contains(searchText.ToLower())
                 )
                 .ToList();
+
+                message = suppliers.Count + " result found";
                 //categories = categories.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
             }
+            ViewBag.Message = message;
+            SupplierViewModel resultModel = new SupplierViewModel() { Suppliers = suppliers};
 
-            SupplierViewModel supplierViewModel = new SupplierViewModel();
-            supplierViewModel.Suppliers = suppliers;
-
-            return View(supplierViewModel);
+            return View(resultModel);
         }
 
         [HttpGet]
@@ -108,21 +113,19 @@ namespace CyberSolar.Controllers
                 if (_supplierManager.Update(supplier))
                 {
                     message = "Updated";
+                    ModelState.Clear();
+                    return RedirectToAction("Add", "Supplier");
                 }
                 else
                 {
                     message = "Not Updated";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
             ViewBag.Message = message;
-            supplierViewModel.Suppliers = _supplierManager.GetAll();
+            SupplierViewModel emptyModel = new SupplierViewModel() { Suppliers = _supplierManager.GetAll() };
 
-            return View(supplierViewModel);
+            return View(emptyModel);
         }
 
 
@@ -150,21 +153,35 @@ namespace CyberSolar.Controllers
                 if (_supplierManager.Delete(supplier.Id))
                 {
                     message = "Deleted";
+                    ModelState.Clear();
+                    return RedirectToAction("Add", "Supplier");
                 }
                 else
                 {
                     message = "Not Deleted";
                 }
             }
-            else
-            {
-                message = "Model State False!!";
-            }
 
             ViewBag.Message = message;
-            supplierViewModel.Suppliers = _supplierManager.GetAll();
+            SupplierViewModel emptyModel = new SupplierViewModel() { Suppliers = _supplierManager.GetAll() };
 
             return View(supplierViewModel);
+        }
+
+        public JsonResult IsCodeExists(string code) {
+            List<Supplier> suppliers = _supplierManager.GetAll();
+            JsonResult isUnique = Json(suppliers.All(c=>c.Code!=code), JsonRequestBehavior.AllowGet);
+            return isUnique;
+        }
+        public JsonResult IsEmailExists(string email) {
+            List<Supplier> suppliers = _supplierManager.GetAll();
+            JsonResult isUnique = Json(suppliers.All(c => c.Email != email), JsonRequestBehavior.AllowGet);
+            return isUnique;
+        }
+        public JsonResult IsContactExists(string contact) {
+            List<Supplier> suppliers = _supplierManager.GetAll();
+            JsonResult isUnique = Json(suppliers.All(c => c.Contact != contact), JsonRequestBehavior.AllowGet);
+            return isUnique;
         }
     }
 }

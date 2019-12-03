@@ -40,63 +40,49 @@
     </style>
 }
 
-<div>
-    <h1 class="subject">Supplier Information</h1>
-    <form method="post">
-        <table style="width: 70%; margin: auto">
-            <tr>
-                <td>@Html.LabelFor(c => c.Code)</td>
-                <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(c => c.Name)</td>
-                <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(c => c.Address)</td>
-                <td>@Html.TextBoxFor(c => c.Address, Model.Address)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(c => c.Email)</td>
-                <td>@Html.TextBoxFor(c => c.Email, Model.Email)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(c => c.Contact)</td>
-                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(c => c.ContactPerson)</td>
-                <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Delete" /></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <h2>@ViewBag.Message</h2>
-                    }
-                </td>
-                <td></td>
-            </tr>
+    <div>
+        <h1 class="subject">Supplier Information</h1>
+        <form method="post">
+            <h3 style="color: red">Do you want to Delete this supplier:</h3>
+            <table style="width: 70%; margin: auto">
+                <tr>
+                    <td>@Html.LabelFor(c => c.Code)</td>
+                    <td>@Html.TextBoxFor(c => c.Code, Model.Code, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Name)</td>
+                    <td>@Html.TextBoxFor(c => c.Name, Model.Name, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Address)</td>
+                    <td>@Html.TextBoxFor(c => c.Address, Model.Address, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Email)</td>
+                    <td>@Html.TextBoxFor(c => c.Email, Model.Email, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Contact)</td>
+                    <td>@Html.TextBoxFor(c => c.Contact, Model.Contact, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.ContactPerson)</td>
+                    <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Delete" /></td>
+                </tr>
 
-        </table>
-    </form>
-    <p></p>
-    @{
-        Html.RenderPartial(Model.SharedViewString, Model);
-    }
-</div>
+            </table>
+        </form>
+        <p></p>
+        @{
+            Html.RenderPartial(Model.SharedViewString, Model);
+        }
+        <br />
+        @Html.ActionLink("Back to Home", "Add", "Supplier")
+    </div>
 
 @section MyScript{
     <script src="~/Scripts/jquery-1.8.0.js"></script>

@@ -1,15 +1,10 @@
 ﻿@model CyberSolar.Models.SupplierViewModel
 @{
-    ViewBag.Title = "Supplier";
+    ViewBag.Title = "Add";
     Layout = Model.SharedViewLayout;
 }
 
-@*<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Supplier Information</title>*@
+@section MyStyles{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -42,58 +37,87 @@
             color: red;
             font-weight: bold;
         }
-    </style>
-@*</head>*@
 
-<body class="content">
+        .result {
+            color: green;
+            font-size: 30px;
+        }
+
+        .searchBox {
+            margin: auto;
+            width: 70%;
+            text-align: right
+        }
+    </style>
+}
+
     <div>
         <h1 class="subject">Supplier Information</h1>
+        <form method="post">
+            <p class="searchBox">
+                @Html.TextBoxFor(c => c.SearchText, Model.SearchText)
+                <input type="submit" value="Search" formaction="Search" @*id="searchButton"*@ />
+            </p>
+        </form>
+
+        <br />
         <form method="post">
             <table style="width: 70%; margin: auto">
                 <tr>
                     <td>@Html.LabelFor(c => c.Code)</td>
-                    <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Code, Model.Code)
+                        <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Name)</td>
-                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Name, Model.Name)
+                        <br/><span class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</span>
+                    </td>
+
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Address)</td>
-                    <td>@Html.TextBoxFor(c => c.Address, Model.Address)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Address, Model.Address)
+                        <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Email)</td>
-                    <td>@Html.TextBoxFor(c => c.Email, Model.Email)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Email, Model.Email)
+                        <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.Contact)</td>
-                    <td>@Html.TextBoxFor(c => c.Contact, Model.Contact)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Contact, Model.Contact)
+                        <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</span>
+                        </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(c => c.ContactPerson)</td>
-                    <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)
+                        <br /><span class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</span>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td><input type="submit" value="Save" /></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
                         @if (ViewBag.Message != null)
                         {
-                            <h2>@ViewBag.Message</h2>
+                            <p class="result">@ViewBag.Message</p>
                         }
                     </td>
-                    <td></td>
                 </tr>
 
             </table>
@@ -104,9 +128,8 @@
         }
     </div>
 
+@section MyScripts{
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
-</body>
-@*</html>*@
+}

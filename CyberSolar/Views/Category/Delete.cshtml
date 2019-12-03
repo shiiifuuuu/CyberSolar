@@ -37,9 +37,6 @@
             color: red;
             font-weight: bold;
         }
-        .result {
-            color: green;font-size: 30px;
-        }
     </style>
 }
 
@@ -61,17 +58,9 @@
 
             <tr>
                 <td></td>
-                <td><input type="submit" value="Delete" name="action:Delete"/></td>
+                <td><input type="submit" value="Delete"/></td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @if (ViewBag.Message != null)
-                    {
-                        <p class="result">@ViewBag.Message</p>
-                    }
-                </td>
-            </tr>
+
         </table>
     </form>
     <p></p>
