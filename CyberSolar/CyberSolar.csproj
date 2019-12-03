@@ -401,6 +401,11 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Search.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Purches\Add.cshtml" />
+    <Content Include="Views\Sale\Add.cshtml" />
+    <Content Include="Views\Stock\Search.cshtml" />
+    <Content Include="Views\Report\PurchesReport.cshtml" />
+    <Content Include="Views\Report\SalesReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -410,10 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Purches\" />
-    <Folder Include="Views\Report\" />
-    <Folder Include="Views\Sale\" />
-    <Folder Include="Views\Stock\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CyberSolar.BLL\CyberSolar.BLL.csproj">
