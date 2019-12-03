@@ -41,15 +41,18 @@ namespace CyberSolar.Controllers
                 if (_categoryManager.Add(category))
                 {
                     message += "Saved!";
+                    ModelState.Clear();
                 }
                 else
                 {
                     message += "Not Saved!!";
                 }
+
             }
-            categoryViewModel.Categories = _categoryManager.GetAll();
+            CategoryViewModel emptyModel = new CategoryViewModel(){Categories = _categoryManager.GetAll()};
+            
             ViewBag.Message = message;
-            return View(categoryViewModel);
+            return View(emptyModel);
         }
 
         [HttpGet]

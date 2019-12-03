@@ -18,10 +18,9 @@
             <span style="color: red; font-weight: bold">Delete</span>
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", "Category", new { Id = category.Id }, null)
-            |
-            @Html.ActionLink("Delete", "Delete", "Category", new { Id = category.Id }, null)
-        </td>
+                @Html.ActionLink("Edit", "Edit", "Category", new { Id = category.Id }, null)/
+                @Html.ActionLink("Delete", "Delete", "Category", new { Id = category.Id }, null)
+</td>
     </tr>
     }
 

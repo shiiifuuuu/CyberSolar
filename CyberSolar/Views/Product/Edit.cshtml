@@ -6,10 +6,12 @@
 
 @*<!DOCTYPE html>
 
-    <html>*@
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Category Information</title>*@
+@section MyStyle
+{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -26,31 +28,13 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
-
-        .subject {
-            text-align: center;
-            color: darkgreen;
-            font-size: 70px;
-        }
-
-        .content {
-            max-width: 80%;
-            margin: auto;
-        }
-
-        .errorMessage {
-            color: red;
-            font-weight: bold;
-        }
     </style>
+}
+<div class="col-lg-10">
+    <h2>Product Information</h2>
 
-</head>
-@*    <body>*@
-<div>
-    <h1 class="subject">Product Information</h1>
-
-    <form method="post">
-        <table style="width: 70%; margin: auto">
+    <form id="adminpro-form" class="adminpro-form" method="post">
+        <table >
             <tr>
                 <td>@Html.LabelFor(c => c.CategoryId)</td>
                 <td>@Html.DropDownListFor(c => c.CategoryId, Model.CategorySelectListItems)</td>

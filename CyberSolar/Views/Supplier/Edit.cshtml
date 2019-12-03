@@ -9,104 +9,89 @@
     <html>
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title>Supplier Information</title>*@
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-
-    .subject {
-        text-align: center;
-        color: darkgreen;
-        font-size: 70px;
-    }
-
-    .content {
-        max-width: 80%;
-        margin: auto;
-    }
-
-    .errorMessage {
-        color: red;
-        font-weight: bold;
-    }
-</style>
-@*</head>*@
-
-<body class="content">
-    <div>
-        <h1 class="subject">Supplier Information</h1>
-        <form method="post">
-            <table style="width: 70%; margin: auto">
-                <tr>
-                    <td>@Html.LabelFor(c => c.Code)</td>
-                    <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Name)</td>
-                    <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Address)</td>
-                    <td>@Html.TextBoxFor(c => c.Address, Model.Address)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Email)</td>
-                    <td>@Html.TextBoxFor(c => c.Email, Model.Email)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.Contact)</td>
-                    <td>@Html.TextBoxFor(c => c.Contact, Model.Contact)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.ContactPerson)</td>
-                    <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)</td>
-                    <td class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Update" /></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        @if (ViewBag.Message != null)
-                        {
-                            <h2>@ViewBag.Message</h2>
-                        }
-                    </td>
-                    <td></td>
-                </tr>
-
-            </table>
-        </form>
-        <p></p>
-        @{
-            Html.RenderPartial("~/Views/Shared/Supplier/_SupplierDetails.cshtml", Model);
+        <title>Category Information</title>*@
+@section MyStyle
+{
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
-    </div>
 
-    <script src="~/Scripts/jquery-1.8.0.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+}
+<div class="col-lg-10">
+    <h2>supplier Information</h2>
+
+    <form id="adminpro-form" class="adminpro-form" method="post">
+        <table>
+            <tr>
+                <td>@Html.LabelFor(c => c.Code)</td>
+                <td>@Html.TextBoxFor(c => c.Code, Model.Code)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Name)</td>
+                <td>@Html.TextBoxFor(c => c.Name, Model.Name)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Address)</td>
+                <td>@Html.TextBoxFor(c => c.Address, Model.Address)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Address)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Email)</td>
+                <td>@Html.TextBoxFor(c => c.Email, Model.Email)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.Contact)</td>
+                <td>@Html.TextBoxFor(c => c.Contact, Model.Contact)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.ContactPerson)</td>
+                <td>@Html.TextBoxFor(c => c.ContactPerson, Model.ContactPerson)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.ContactPerson)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @if (ViewBag.Message != null)
+                    {
+                        <h2>@ViewBag.Message</h2>
+                    }
+                </td>
+                <td></td>
+            </tr>
+
+        </table>
+    </form>
+    <p></p>
+    @{
+        Html.RenderPartial("~/Views/Shared/Supplier/_SupplierDetails.cshtml", Model);
+    }
+</div>
+
+<script src="~/Scripts/jquery-1.8.0.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 </body>
 @*</html>*@

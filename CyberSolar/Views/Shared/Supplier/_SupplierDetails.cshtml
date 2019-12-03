@@ -23,10 +23,9 @@
             <td>@supplier.Contact</td>
             <td>@supplier.ContactPerson</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Supplier", new { Id = supplier.Id }, null)
-                |
+                @Html.ActionLink("Edit", "Edit", "Supplier", new { Id = supplier.Id }, null)/           
                 @Html.ActionLink("Delete", "Delete", "Supplier", new { Id = supplier.Id }, null)
-            </td>
+</td>
         </tr>
     }
 

@@ -8,10 +8,12 @@
 
 @*<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Category Information</title>*@
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Category Information</title>*@
+@section MyStyle
+{
     <style>
         table {
             font-family: arial, sans-serif;
@@ -28,28 +30,13 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
-        .subject {
-            text-align: center;
-            color: darkgreen;
-            font-size: 70px;
-        }
-        .content {
-            max-width: 80%;
-            margin: auto;
-        }
-        .errorMessage {
-            color: red;
-            font-weight: bold;
-        }
     </style>
-@*</head>*@
+}
+    <div class="col-lg-10">
+        <h2>Category Information</h2>
 
-<body class="content">
-    <div>
-        <h1 class="subject">Category Information</h1>
-        <form method="post">
-            <table style="width: 70%; margin: auto">
-
+        <form id="adminpro-form" class="adminpro-form" method="post">
+            <table>
                 <tr>
                     @*<td>Code:</td>*@
                     <td>@Html.LabelFor(c => c.Code)</td>
@@ -83,15 +70,45 @@
 
             </table>
         </form>
-        <p></p>
+
         @{
             Html.RenderPartial("~/Views/Shared/Category/_CategoryDetails.cshtml", Model);
         }
+
     </div>
 
-    <script src="~/Scripts/jquery-1.8.0.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-</body>
-@*</html>*@
+@section MyScripts
+{
+    @*<script src="~/Scripts/jquery-1.8.0.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<script>
+        $(document).ready(function () {
+            $("#RollNo").focusout(function () {
+                var rollNo = ("#RollNo").val();
+                var jsonData = { rollNo: rollNo };
+
+                $.ajax({
+                    url="/Student/GetStudentByRollNo",
+                    type = "POST",
+                    data = jsonData,
+                    success =  function (exist) {
+                        //$("#existRoll").text(exist);
+
+                        alert("test");
+                    },
+                    error: function () {
+                        alert("ajax Requiest Failed!!!");
+                    }
+                }
+                )
+            })
+        })
+    </script>*@
+}
+
+
+
+
+    

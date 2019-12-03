@@ -23,8 +23,7 @@
             <td>@product.ReorderLevel</td>
             <td>@product.Description</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Product", new { Id = product.Id }, null)
-                |
+                @Html.ActionLink("Edit", "Edit", "Product", new { Id = product.Id }, null)/
                 @Html.ActionLink("Delete", "Delete", "Product", new { Id = product.Id }, null)
             </td>
         </tr>
