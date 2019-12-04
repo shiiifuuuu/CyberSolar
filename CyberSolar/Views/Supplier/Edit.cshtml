@@ -47,8 +47,8 @@
         <table style="width: 70%; margin: auto">
             <tr>
                 <td>@Html.LabelFor(c => c.Code)</td>
-                <td>@Html.TextBoxFor(c => c.Code, Model.Code, new { data_val = "false", @readonly="readonly" })</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code)</td>
+                <td>@Html.TextBoxFor(c => c.Code, Model.Code, new { data_val = "false", @readonly="readonly"})</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Code, null, new {id="codeErrorText"})</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Name)</td>
@@ -63,12 +63,12 @@
             <tr>
                 <td>@Html.LabelFor(c => c.Email)</td>
                 <td>@Html.TextBoxFor(c => c.Email, Model.Email, new { data_val = "false", @readonly = "readonly" })</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Email,null, new{id="emailErrorText"})</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.Contact)</td>
                 <td>@Html.TextBoxFor(c => c.Contact, Model.Contact, new { data_val = "false", @readonly = "readonly" })</td>
-                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact)</td>
+                <td class="errorMessage">@Html.ValidationMessageFor(c => c.Contact,null,new{id="contactErrorText"})</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(c => c.ContactPerson)</td>
@@ -95,5 +95,17 @@
     <script src="~/Scripts/jquery-1.8.0.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    
+    <script>
+        $("#Code").click(function () {
+            $("#codeErrorText").text("This field is not editable");
+        });
+        $("#Email").click(function () {
+            $("#emailErrorText").text("This field is not editable");
+        });
+        $("#Contact").click(function () {
+            $("#contactErrorText").text("This field is not editable");
+        });
+    </script>
 }
 

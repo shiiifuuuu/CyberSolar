@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201912011405599_Product_categoryName_Removed.Designer.cs">
       <DependentUpon>201912011405599_Product_categoryName_Removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912041733039_PurchaseModel.cs" />
+    <Compile Include="Migrations\201912041733039_PurchaseModel.Designer.cs">
+      <DependentUpon>201912041733039_PurchaseModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912041758322_PurchaseModel1.cs" />
+    <Compile Include="Migrations\201912041758322_PurchaseModel1.Designer.cs">
+      <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912011405599_Product_categoryName_Removed.resx">
       <DependentUpon>201912011405599_Product_categoryName_Removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912041733039_PurchaseModel.resx">
+      <DependentUpon>201912041733039_PurchaseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912041758322_PurchaseModel1.resx">
+      <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

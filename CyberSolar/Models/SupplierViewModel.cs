@@ -28,7 +28,7 @@ namespace CyberSolar.Models
 
         [MinLength(11, ErrorMessage = "field must be 11 characters")]
         [MaxLength(11, ErrorMessage = "field must be 11 characters")]
-        [Range(0, int.MaxValue, ErrorMessage = "Numeric value required")]
+        [Range(0, Int64.MaxValue, ErrorMessage = "Numeric value required")]
         [Remote("IsContactExists", "Supplier", ErrorMessage = "This number already in use")]
         [Required(ErrorMessage = "required!!")]
         public string Contact { get; set; }

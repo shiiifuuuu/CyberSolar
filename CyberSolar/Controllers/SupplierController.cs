@@ -32,6 +32,7 @@ namespace CyberSolar.Controllers
         public ActionResult Add(SupplierViewModel supplierViewModel)
         {
             Supplier supplier = Mapper.Map<Supplier>(supplierViewModel);
+            supplier.Code = supplier.Code.ToUpper();
 
             string message = "";
 
@@ -114,6 +115,7 @@ namespace CyberSolar.Controllers
                 {
                     message = "Updated";
                     ModelState.Clear();
+                    TempData["Message"] = message;
                     return RedirectToAction("Add", "Supplier");
                 }
                 else
@@ -170,17 +172,17 @@ namespace CyberSolar.Controllers
 
         public JsonResult IsCodeExists(string code) {
             List<Supplier> suppliers = _supplierManager.GetAll();
-            JsonResult isUnique = Json(suppliers.All(c=>c.Code!=code), JsonRequestBehavior.AllowGet);
+            JsonResult isUnique = Json(suppliers.All(c=>c.Code.ToLower()!=code.ToLower()), JsonRequestBehavior.AllowGet);
             return isUnique;
         }
         public JsonResult IsEmailExists(string email) {
             List<Supplier> suppliers = _supplierManager.GetAll();
-            JsonResult isUnique = Json(suppliers.All(c => c.Email != email), JsonRequestBehavior.AllowGet);
+            JsonResult isUnique = Json(suppliers.All(c => c.Email.ToLower() != email.ToLower()), JsonRequestBehavior.AllowGet);
             return isUnique;
         }
         public JsonResult IsContactExists(string contact) {
             List<Supplier> suppliers = _supplierManager.GetAll();
-            JsonResult isUnique = Json(suppliers.All(c => c.Contact != contact), JsonRequestBehavior.AllowGet);
+            JsonResult isUnique = Json(suppliers.All(c => c.Contact.ToLower() != contact.ToLower()), JsonRequestBehavior.AllowGet);
             return isUnique;
         }
     }
