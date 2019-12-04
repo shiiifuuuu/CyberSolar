@@ -14,22 +14,29 @@ namespace CyberSolar.DAL.Repository
 
         public bool Add(PurchaseInformation purchase)
         {
-            return true;
+            _dbContext.PurchaseInformations.Add(purchase);
+
+            return _dbContext.SaveChanges() > 0;
         }
 
         public bool Delete(PurchaseInformation purchase)
         {
-            return true;
+            PurchaseInformation aPurchase = _dbContext.PurchaseInformations.FirstOrDefault(c => c.Id == purchase.Id);
+            if (aPurchase != null)
+            {
+                _dbContext.PurchaseInformations.Remove(aPurchase);
+            }
+            return _dbContext.SaveChanges() > 0;
         }
 
         public List<PurchaseInformation> GetAll()
         {
-            return new List<PurchaseInformation>();
+            return _dbContext.PurchaseInformations.ToList();
         }
 
         public PurchaseInformation GetById(int id)
         {
-            return new PurchaseInformation();
+            return _dbContext.PurchaseInformations.FirstOrDefault(c => c.Id == id);
         }
     }
 }

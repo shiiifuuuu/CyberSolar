@@ -1,21 +1,135 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/_Shared/_Layout.cshtml"; ;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
+@section MyStyles
+{
     <style>
-        
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .suppliers {
+            
+        }
+        .products {
+
+        }
+        .purchaseList {
+
+        }
+        .itemColumn {
+            float: left;
+            padding: 10px;
+        }
     </style>
-</head>
-<body>
-    <div class="supplierBorder"> 
+}
+
+<div>
+    <div class="suppliers"> 
+        <table>
+            <tr>
+                <td>Date:</td>
+                <td>@Html.TextBox("sample")</td>
+            </tr>
+            <tr>
+                <td>Bill/InvoiceNo:</td>
+                <td>@Html.TextBox("sample")</td>
+            </tr>
+            <tr>
+                <td>Supplier:</td>
+                <td>@Html.TextBox("sample")</td>
+            </tr>
+        </table>
+    </div>
+    <div class="products">
+        <div class="itemColumn">
+            <table>
+                <tr>
+                    <td>Category:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Products:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Code:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Available Quantity:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Manufactured Date:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Expire Date:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+            </table>
+        </div>
+        <div class="itemColumn">
+            <table>
+                <tr>
+                    <td>Quantity:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Unit Price (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Total Price (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>previous Unit Price (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Previous MRP (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>MRP (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <tr>
+                <td>Remarks:</td>
+                <td>@Html.TextBox("sample")</td>
+            </tr>
+        </table>
 
     </div>
-</body>
-</html>
+
+    <div class="purchaseList">
+        <form type="post">
+
+            <input type="Submit" value="Add"/>
+        </form>
+    </div>
+</div>
+
+
+@section MyScripts
+{
+    
+}
