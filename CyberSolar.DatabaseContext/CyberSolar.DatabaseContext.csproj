@@ -85,6 +85,22 @@
     <Compile Include="Migrations\201912041758322_PurchaseModel1.Designer.cs">
       <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912051359428_PurchaseModel2.cs" />
+    <Compile Include="Migrations\201912051359428_PurchaseModel2.Designer.cs">
+      <DependentUpon>201912051359428_PurchaseModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912051421131_PurchaseModel3.cs" />
+    <Compile Include="Migrations\201912051421131_PurchaseModel3.Designer.cs">
+      <DependentUpon>201912051421131_PurchaseModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912051704142_PurchaseModel4.cs" />
+    <Compile Include="Migrations\201912051704142_PurchaseModel4.Designer.cs">
+      <DependentUpon>201912051704142_PurchaseModel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912071632352_PurchaseModel5.cs" />
+    <Compile Include="Migrations\201912071632352_PurchaseModel5.Designer.cs">
+      <DependentUpon>201912071632352_PurchaseModel5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +141,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912041758322_PurchaseModel1.resx">
       <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912051359428_PurchaseModel2.resx">
+      <DependentUpon>201912051359428_PurchaseModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912051421131_PurchaseModel3.resx">
+      <DependentUpon>201912051421131_PurchaseModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912051704142_PurchaseModel4.resx">
+      <DependentUpon>201912051704142_PurchaseModel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912071632352_PurchaseModel5.resx">
+      <DependentUpon>201912071632352_PurchaseModel5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

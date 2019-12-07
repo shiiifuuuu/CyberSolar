@@ -1,0 +1,37 @@
+﻿@model CyberSolar.Models.PurchaseViewModel
+
+<table>
+    <tr>
+        <th>SI</th>
+        <th>Products(Code)</th>
+        <th>Manufactured<br/>Date</th>
+        <th>Expire<br/>Date</th>
+        <th>Quantity</th>
+        <th>Unit<br/>Price<br/>(tk)</th>
+        <th>Total<br />Price<br />(tk)</th>
+        <th>MRP<br />(tk)</th>
+        <th>Remarks</th>
+        <th>Action</th>
+    </tr>
+    @{ int sl = 0;}
+    @foreach (var purchase in Model.PurchaseInformations)
+    {
+        <tr>
+            <td>@(++sl)</td>
+            <td>@purchase.PurchasedProduct.Product.Code</td>
+            <td>@purchase.PurchasedProduct.ManufacturedDate</td>
+            <td>@purchase.PurchasedProduct.ExpireDate</td>
+            <td>@purchase.PurchasedProduct.Quantity</td>
+            <td>@purchase.PurchasedProduct.UnitPrice</td>
+            <td>@purchase.PurchasedProduct.Quantity*@purchase.PurchasedProduct.UnitPrice</td>
+            <td>@purchase.PurchasedProduct.Mrp</td>
+            <td>@purchase.PurchasedProduct.Remarks</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Purchase", new { id = purchase.Id }, null)
+                |
+                @Html.ActionLink("Delete", "Delete", "Purchase", new { id = purchase.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

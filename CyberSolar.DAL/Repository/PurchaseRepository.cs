@@ -10,7 +10,12 @@ namespace CyberSolar.DAL.Repository
 {
     public class PurchaseRepository
     {
-        ProjectDbContext _dbContext = new ProjectDbContext();
+        private readonly ProjectDbContext _dbContext;
+
+        public PurchaseRepository()
+        {
+            _dbContext = new ProjectDbContext();
+        }
 
         public bool Add(PurchaseInformation purchase)
         {
@@ -31,12 +36,17 @@ namespace CyberSolar.DAL.Repository
 
         public List<PurchaseInformation> GetAll()
         {
-            return _dbContext.PurchaseInformations.ToList();
+            return _dbContext.PurchaseInformations.Include("Supplier").Include("Product").ToList();
         }
 
         public PurchaseInformation GetById(int id)
         {
             return _dbContext.PurchaseInformations.FirstOrDefault(c => c.Id == id);
+        }
+
+        public IQueryable<PurchaseInformation> GetIQueryable()
+        {
+            return _dbContext.PurchaseInformations;
         }
     }
 }

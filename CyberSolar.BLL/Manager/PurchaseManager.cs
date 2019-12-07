@@ -31,5 +31,10 @@ namespace CyberSolar.BLL.Manager
         {
             return _purchaseRepository.GetById(id);
         }
+
+        public IQueryable<PurchaseInformation> GetIQueryable()
+        {
+            return _purchaseRepository.GetIQueryable();
+        }
     }
 }

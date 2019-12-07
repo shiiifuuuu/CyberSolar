@@ -1,5 +1,7 @@
-﻿
+﻿@model CyberSolar.Models.PurchaseViewModel
+
 @{
+    ViewBag.Title = "Add";
     Layout = "~/Views/_Shared/_Layout.cshtml"; ;
 }
 
@@ -21,8 +23,26 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        .subject {
+            text-align: center;
+            color: darkgreen;
+            font-size: 70px;
+        }
+        fieldset {
+            padding: 10px;
+            border: 2px solid black;
+             
+            border-radius: 4px;
+        }
+
+        legend {
+            margin: 5px;
+            padding: 2px;
+            font-weight: bold;
+        }
         .suppliers {
-            
+            width:50%;
+            margin:auto;
         }
         .products {
 
@@ -32,98 +52,101 @@
         }
         .itemColumn {
             float: left;
-            padding: 10px;
+            padding-right: 10px;
+            margin:auto;
         }
     </style>
 }
 
 <div>
-    <div class="suppliers"> 
-        <table>
-            <tr>
-                <td>Date:</td>
-                <td>@Html.TextBox("sample")</td>
-            </tr>
-            <tr>
-                <td>Bill/InvoiceNo:</td>
-                <td>@Html.TextBox("sample")</td>
-            </tr>
-            <tr>
-                <td>Supplier:</td>
-                <td>@Html.TextBox("sample")</td>
-            </tr>
-        </table>
+    <h1 class="subject">Purchase Information</h1>
+    <div class="suppliers">
+        <fieldset>
+            <legend>Supplier</legend>
+            <table>
+                <tr>
+                    <td>Date:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Bill/InvoiceNo:</td>
+                    <td>@Html.TextBox("sample")</td>
+                </tr>
+                <tr>
+                    <td>Supplier:</td>
+                    <td>@Html.DropDownListFor(c=>c.SupplierId, Model.SupplierSelectListItems,"-Select-")</td>
+                </tr>
+            </table>
+        </fieldset>
+       
     </div>
+
     <div class="products">
-        <div class="itemColumn">
+        <fieldset>
+            <legend>Products</legend>
+
             <table>
                 <tr>
                     <td>Category:</td>
+                    <td>@Html.DropDownListFor(c => c.PurchasedProduct.Product.CategoryId, Model.CategorySelectListItems, "-Select-", 
+                       new { id = "CategoryList"})</td>
+                    <td>Quantity:</td>
                     <td>@Html.TextBox("sample")</td>
                 </tr>
                 <tr>
                     <td>Products:</td>
+                    <td>@Html.DropDownListFor(c => c.PurchasedProduct.ProductId, 
+                       new SelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text"), "-Select-", 
+                       new { id = "ProductsList" })</td>
+                    <td>Unit Price (tk):</td>
                     <td>@Html.TextBox("sample")</td>
                 </tr>
                 <tr>
                     <td>Code:</td>
                     <td>@Html.TextBox("sample")</td>
+                    <td>Total Price (tk):</td>
+                    <td>@Html.TextBox("sample")</td>
                 </tr>
                 <tr>
                     <td>Available Quantity:</td>
+                    <td>@Html.TextBox("sample")</td>
+                    <td>previous Unit Price (tk):</td>
                     <td>@Html.TextBox("sample")</td>
                 </tr>
                 <tr>
                     <td>Manufactured Date:</td>
                     <td>@Html.TextBox("sample")</td>
-                </tr>
-                <tr>
-                    <td>Expire Date:</td>
-                    <td>@Html.TextBox("sample")</td>
-                </tr>
-            </table>
-        </div>
-        <div class="itemColumn">
-            <table>
-                <tr>
-                    <td>Quantity:</td>
-                    <td>@Html.TextBox("sample")</td>
-                </tr>
-                <tr>
-                    <td>Unit Price (tk):</td>
-                    <td>@Html.TextBox("sample")</td>
-                </tr>
-                <tr>
-                    <td>Total Price (tk):</td>
-                    <td>@Html.TextBox("sample")</td>
-                </tr>
-                <tr>
-                    <td>previous Unit Price (tk):</td>
-                    <td>@Html.TextBox("sample")</td>
-                </tr>
-                <tr>
                     <td>Previous MRP (tk):</td>
                     <td>@Html.TextBox("sample")</td>
                 </tr>
                 <tr>
+                    <td>Expire Date:</td>
+                    <td>@Html.TextBox("sample")</td>
                     <td>MRP (tk):</td>
                     <td>@Html.TextBox("sample")</td>
                 </tr>
+                <tr>
+                    <td>Remarks:</td>
+                    <td>@Html.TextArea("sample")</td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </table>
-        </div>
-        <table>
-            <tr>
-                <td>Remarks:</td>
-                <td>@Html.TextBox("sample")</td>
-            </tr>
-        </table>
-
+            <br/>
+            <input style="float:right;" type="Submit" value="Add" />
+            
+        </fieldset>
+        
     </div>
-
+    <p></p>
     <div class="purchaseList">
-        <form type="post">
 
-            <input type="Submit" value="Add"/>
+        <form type="post">
+            @{
+                Html.RenderPartial("~/Views/_Shared/PurchaseInformation/_PurchaseInformationDetails.cshtml", Model);
+            }
+            <br/>
+            <input style="float:right" type="Submit" value="Submit"/>
         </form>
     </div>
 </div>
@@ -131,5 +154,26 @@
 
 @section MyScripts
 {
-    
+    <script>
+        //$("#ProductsList").attr('disabled', 'disabled');
+
+        $("#CategoryList").change(function () {
+            var CId = $(this).val();
+            $.getJSON("../PurchaseController/ProductsDropDownLoad", { categoryId: CId },
+                function (data) {
+                    var select = $("#ProductsList");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "-"
+                    }));
+                    $.each(data, function (index, itemData) {
+                        select.append($('<option/>', {
+                            value: itemData.Value,
+                            text: itemData.Text
+                        }));
+                    });
+                });
+        })
+    </script>
 }
