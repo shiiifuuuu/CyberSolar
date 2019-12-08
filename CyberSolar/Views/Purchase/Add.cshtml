@@ -106,8 +106,8 @@
                     <td>@Html.TextBoxFor(c=>c.PurchasedProduct.UnitPrice, Model.PurchasedProduct.UnitPrice)</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.Code)</td>
-                    <td>@Html.TextBoxFor(c => c.PurchasedProduct.Product.Code, Model.PurchasedProduct.Product.Code)</td>
+                    <td>Code:@*@Html.LabelFor(c=>c.PurchasedProduct.Product.Code)*@</td>
+                    <td><label id="pCode"></label></td>
                     <td>Total Price (tk):</td>
                     <td>@Html.TextBox("TotalPrice")</td>
                 </tr>
@@ -186,6 +186,33 @@
                 });
             })
         })
+    </script>
+    <script>
+        $("#ProductList").change(function () {
+        //$("#ProductList").attr('disabled', 'disabled');
+            var productId = $("#ProductList").val();
+            var jsonParameterData = { productId: productId };
+
+            //Ajax
+            $.ajax({
+                url: "/Purchase/GetProductCode",
+                type: "POST",
+                data: jsonParameterData,
+                success: function (data) {
+                    alert("success");
+                    var pode = data[0].Code;
+                    alert("Code: " + pode);
+
+                    $("#pCode").text(pode);
+                },
+                error: function () {
+                    alert("Failed");
+                }
+            });
+        })
+        //document.ready(function () {
+            
+        //})
     </script>
 
 }

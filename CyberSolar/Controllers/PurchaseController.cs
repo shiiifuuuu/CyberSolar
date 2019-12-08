@@ -43,6 +43,13 @@ namespace CyberSolar.Controllers
             return Json(products, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetProductCode(int productId)
+        {
+            var productList = _productManager.GetAll().Where(c => c.Id == productId).ToList();
+            var productCode = productList.Select(c=>new { c.Code}).ToList();
+            return Json(productCode, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Add()
         {
