@@ -35,14 +35,12 @@ namespace CyberSolar.Controllers
                 { Value = c.Id.ToString(), Text = c.Name }).ToList();
         }
         
-        public JsonResult ProductsDropDownLoad(string categoryId)
+        public JsonResult ProductsDropDownLoad(int categoryId)
         {
-            PurchaseViewModel purchaseViewModel = new PurchaseViewModel();
-            purchaseViewModel.ProductsSelectListItems = _productManager.GetAll()
-                .Where(c=>c.CategoryId.Equals(categoryId))
-                .Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }).ToList();
+            var productList = _productManager.GetAll().Where(c => c.CategoryId == categoryId).ToList();
+            var products = productList.Select(c => new { c.Id, c.Name }).ToList();
 
-            return Json(purchaseViewModel, JsonRequestBehavior.AllowGet);
+            return Json(products, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

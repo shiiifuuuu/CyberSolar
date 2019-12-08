@@ -8,6 +8,11 @@ namespace CyberSolar.MODEL.Model
 {
     public class PurchasedProductInformation
     {
+        public PurchasedProductInformation()
+        {
+            Product = new Product();
+        }
+
         public int Id { set; get; }
         public int ProductId { set; get; }
         public Product Product { set; get; }//foreign key

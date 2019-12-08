@@ -10,6 +10,10 @@ namespace CyberSolar.MODEL.Model
 {
     public class Product
     {
+        public Product()
+        {
+            Category = new Category();
+        }
         public int Id { set; get; }
         public int CategoryId { set; get; }
         [ForeignKey("CategoryId")]

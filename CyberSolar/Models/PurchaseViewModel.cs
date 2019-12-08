@@ -9,6 +9,10 @@ namespace CyberSolar.Models
 {
     public class PurchaseViewModel
     {
+        public PurchaseViewModel()
+        {
+            PurchasedProduct = new PurchasedProductInformation();
+        }
         public int Id { set; get; }
         public string Code { set; get; }
         public DateTime PurchaseDate { set; get; }
