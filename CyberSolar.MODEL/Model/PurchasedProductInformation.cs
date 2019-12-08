@@ -16,8 +16,8 @@ namespace CyberSolar.MODEL.Model
         public int Id { set; get; }
         public int ProductId { set; get; }
         public Product Product { set; get; }//foreign key
-        public DateTime? ManufacturedDate { set; get; }
-        public DateTime? ExpireDate { set; get; }
+        public DateTime ManufacturedDate { set; get; }
+        public DateTime ExpireDate { set; get; }
         public int Quantity { set; get; }
         public double UnitPrice { set; get; }
         public double Mrp { set; get; }

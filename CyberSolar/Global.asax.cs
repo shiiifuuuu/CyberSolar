@@ -31,6 +31,9 @@ namespace CyberSolar
 
                 cfg.CreateMap<SupplierViewModel, Supplier>();
                 cfg.CreateMap<Supplier, SupplierViewModel>();
+
+                cfg.CreateMap<PurchaseViewModel, PurchaseInformation>();
+                cfg.CreateMap<PurchaseInformation, PurchaseViewModel>();
             });
         }
     }

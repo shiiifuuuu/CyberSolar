@@ -21,6 +21,10 @@ namespace CyberSolar.Models
         public Supplier Supplier { set; get; } //foreign key
         public PurchasedProductInformation PurchasedProduct { set; get; }
 
+        public double TotalPrice { set; get; }
+        public double PreviousUnitPrice { set; get; }
+        public double PreviousMrp { set; get; }
+
         public List<PurchaseInformation> PurchaseInformations { set; get; }
         public List<SelectListItem> SupplierSelectListItems { set; get; }
         public List<SelectListItem> CategorySelectListItems { set; get; }

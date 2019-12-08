@@ -60,88 +60,92 @@
 
 <div>
     <h1 class="subject">Purchase Information</h1>
-    <div class="suppliers">
-        <fieldset>
-            <legend>Supplier</legend>
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchaseDate):</td>
-                    <td>
-                        <input type="date" name="PurchaseDate">
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.InvoiceNo):</td>
-                    <td>@Html.TextBoxFor(c=>c.InvoiceNo, Model.InvoiceNo)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.SupplierId):</td>
-                    <td>@Html.DropDownListFor(c=>c.SupplierId, Model.SupplierSelectListItems,"-Select-")</td>
-                </tr>
-            </table>
-        </fieldset>
-       
-    </div>
+    <form method="post">
+        <div class="suppliers">
+            <fieldset>
+                <legend>Supplier</legend>
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchaseDate):</td>
+                        <td>
+                            <input type="date" name="PurchaseDate" value=@Model.PurchaseDate>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.InvoiceNo):</td>
+                        <td>@Html.TextBoxFor(c => c.InvoiceNo, @Model.InvoiceNo)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.SupplierId):</td>
+                        <td>@Html.DropDownListFor(c => c.SupplierId, @Model.SupplierSelectListItems, "-Select-")</td>
+                    </tr>
+                </table>
+            </fieldset>
 
-    <div class="products">
-        <fieldset>
-            <legend>Products</legend>
+        </div>
 
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.CategoryId):</td>
-                    <td>@Html.DropDownListFor(c => c.PurchasedProduct.Product.CategoryId, Model.CategorySelectListItems, "-Select-"
-                       , new {id="CategoryList" })</td>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.Quantity):</td>
-                    <td>@Html.TextBoxFor(c=>c.PurchasedProduct.Quantity, Model.PurchasedProduct.Quantity)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.ProductId):</td>
-                    <td>
-                        <select id="ProductList">
-                            <option value="">-Select-</option>
-                        </select>
-                    </td>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.UnitPrice):</td>
-                    <td>@Html.TextBoxFor(c=>c.PurchasedProduct.UnitPrice, Model.PurchasedProduct.UnitPrice)</td>
-                </tr>
-                <tr>
-                    <td>Code:@*@Html.LabelFor(c=>c.PurchasedProduct.Product.Code)*@</td>
-                    <td><label id="pCode"></label></td>
-                    <td>Total Price (tk):</td>
-                    <td>@Html.TextBox("TotalPrice")</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c => c.PurchasedProduct.Product.AvailableQuantity)</td>
-                    <td>@Html.TextBoxFor(c => c.PurchasedProduct.Product.AvailableQuantity, Model.PurchasedProduct.Product.AvailableQuantity)</td>
-                    <td>Previous UnitPrice (tk):</td>
-                    <td>@Html.TextBox("PreviousUnitPrice")</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.ManufacturedDate)</td>
-                    <td><input type="date" name="ManufacturedDate"></td>
-                    <td>Previous MRP (tk):</td>
-                    <td>@Html.TextBox("PreviousMrp")</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.ExpireDate)</td>
-                    <td><input type="date" name="ExpireDate"/></td>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.Mrp)</td>
-                    <td>@Html.TextBoxFor(c => c.PurchasedProduct.Mrp, Model.PurchasedProduct.Mrp)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(c=>c.PurchasedProduct.Remarks)</td>
-                    <td>@Html.TextAreaFor(c => c.PurchasedProduct.Remarks, Model.PurchasedProduct.Remarks)</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <br/>
-            <input style="float:right;" type="Submit" value="Add" />
-            
-        </fieldset>
-        
-    </div>
+        <div class="products">
+
+            <fieldset>
+                <legend>Products</legend>
+
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.Product.CategoryId):</td>
+                        <td>
+                            @Html.DropDownListFor(c => c.PurchasedProduct.Product.CategoryId, @Model.CategorySelectListItems, "-Select-"
+                       , new {id="CategoryList" })
+                        </td>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.Quantity):</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Quantity, @Model.PurchasedProduct.Quantity)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.ProductId):</td>
+                        <td>
+                            <select id="ProductList">
+                                <option value="">-Select-</option>
+                            </select>
+                        </td>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.UnitPrice):</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.UnitPrice, @Model.PurchasedProduct.UnitPrice)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.Code)</td>
+                        <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.Id, new { id="pCode"})</td>
+                        <td>@Html.LabelFor(c=>c.TotalPrice)</td>
+                        <td>@Html.TextBoxFor(c=>c.TotalPrice, Model.TotalPrice)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.Product.AvailableQuantity)</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Product.AvailableQuantity, @Model.PurchasedProduct.Product.AvailableQuantity)</td>
+                        <td>Previous UnitPrice (tk):</td>
+                        <td>@Html.TextBoxFor(c=>c.PreviousUnitPrice, Model.PreviousUnitPrice)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.ManufacturedDate)</td>
+                        <td><input type="date" name="ManufacturedDate" value="@Model.PurchasedProduct.ManufacturedDate"></td>
+                        <td>Previous MRP (tk):</td>
+                        <td>@Html.TextBoxFor(c=>c.PreviousMrp, Model.PreviousMrp)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.ExpireDate)</td>
+                        <td><input type="date" name="ExpireDate" value="@Model.PurchasedProduct.ExpireDate"/></td>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.Mrp)</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Mrp, @Model.PurchasedProduct.Mrp)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.PurchasedProduct.Remarks)</td>
+                        <td>@Html.TextAreaFor(c => c.PurchasedProduct.Remarks, @Model.PurchasedProduct.Remarks)</td>
+
+                    </tr>
+                </table>
+                <br />
+                <input style="float:right;" type="Submit" value="Add" />
+
+            </fieldset>
+        </div>
+    </form>
+
     <p></p>
     <div class="purchaseList">
 
@@ -200,10 +204,10 @@
                 data: jsonParameterData,
                 success: function (data) {
                     alert("success");
-                    var pode = data[0].Code;
-                    alert("Code: " + pode);
+                    var productCode = data[0].Code;
+                    alert("Code: " + productCode);
 
-                    $("#pCode").text(pode);
+                    $("#pCode").text(productCode);
                 },
                 error: function () {
                     alert("Failed");

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CyberSolar.BLL.Manager;
 using CyberSolar.Models;
 using CyberSolar.MODEL.Model;
+using AutoMapper;
 
 namespace CyberSolar.Controllers
 {
@@ -46,7 +47,7 @@ namespace CyberSolar.Controllers
         public JsonResult GetProductCode(int productId)
         {
             var productList = _productManager.GetAll().Where(c => c.Id == productId).ToList();
-            var productCode = productList.Select(c=>new { c.Code}).ToList();
+            var productCode = productList.Select(c=>new { c.Code, c.AvailableQuantity}).ToList();
             return Json(productCode, JsonRequestBehavior.AllowGet);
         }
 
@@ -55,6 +56,17 @@ namespace CyberSolar.Controllers
         {
             PurchaseViewModel purchaseViewModel = new PurchaseViewModel();
             //_purchaseManager.GetAll();
+            purchaseViewModel.PurchaseInformations = _purchaseManager.GetIQueryable().ToList(); //Get All Purchase Informations
+            SuppliersDropDownLoad(purchaseViewModel);
+            CategoriesDropDownLoad(purchaseViewModel);
+            return View(purchaseViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Add(PurchaseViewModel purchaseViewModel)
+        {
+            PurchaseInformation aPurchase = Mapper.Map < PurchaseInformation > (purchaseViewModel);
+            
             purchaseViewModel.PurchaseInformations = _purchaseManager.GetIQueryable().ToList(); //Get All Purchase Informations
             SuppliersDropDownLoad(purchaseViewModel);
             CategoriesDropDownLoad(purchaseViewModel);
