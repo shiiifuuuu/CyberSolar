@@ -36,7 +36,7 @@ namespace CyberSolar.DAL.Repository
 
         public List<PurchaseInformation> GetAll()
         {
-            return _dbContext.PurchaseInformations.Include("Supplier").Include("Product").ToList();
+            return _dbContext.PurchaseInformations.Include("Supplier").ToList();
         }
 
         public PurchaseInformation GetById(int id)

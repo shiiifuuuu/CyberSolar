@@ -68,16 +68,16 @@
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchaseDate):</td>
                         <td>
-                            <input type="date" name="PurchaseDate" value=@Model.PurchaseDate>
+                            <input type="date" name="PurchaseDate" value=Model.PurchaseDate>
                         </td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.InvoiceNo):</td>
-                        <td>@Html.TextBoxFor(c => c.InvoiceNo, @Model.InvoiceNo)</td>
+                        <td>@Html.TextBoxFor(c => c.InvoiceNo, Model.InvoiceNo)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.SupplierId):</td>
-                        <td>@Html.DropDownListFor(c => c.SupplierId, @Model.SupplierSelectListItems, "-Select-")</td>
+                        <td>@Html.DropDownListFor(c => c.SupplierId, Model.SupplierSelectListItems, "-Select-")</td>
                     </tr>
                 </table>
             </fieldset>
@@ -93,43 +93,46 @@
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.Product.CategoryId):</td>
                         <td>
-                            @Html.DropDownListFor(c => c.PurchasedProduct.Product.CategoryId, @Model.CategorySelectListItems, "-Select-"
+                            @Html.DropDownListFor(c => c.PurchasedProduct.Product.CategoryId, Model.CategorySelectListItems, "-Select-"
                        , new {id="CategoryList" })
                         </td>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.Quantity):</td>
-                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Quantity, @Model.PurchasedProduct.Quantity)</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Quantity, Model.PurchasedProduct.Quantity)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.ProductId):</td>
                         <td>
-                            <select id="ProductList">
-                                <option value="">-Select-</option>
-                            </select>
+	                        <select id="ProductList">
+		                        <option value="">-Select-</option>
+	                        </select>
                         </td>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.UnitPrice):</td>
-                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.UnitPrice, @Model.PurchasedProduct.UnitPrice)</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.UnitPrice, Model.PurchasedProduct.UnitPrice)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.Code)</td>
-                        <td>@Html.LabelFor(c=>c.PurchasedProduct.Product.Id, new { id="pCode"})</td>
+	                    <td>
+		                    @*@Html.LabelFor(c => c.PurchasedProduct.Product.Id, new {id = "pCode"})*@
+                            @Html.TextBoxFor(c=>c.PurchasedProduct.Product.Code, Model.PurchasedProduct.Product.Code, new{id="pCode"})
+	                    </td>
                         <td>@Html.LabelFor(c=>c.TotalPrice)</td>
                         <td>@Html.TextBoxFor(c=>c.TotalPrice, Model.TotalPrice)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.Product.AvailableQuantity)</td>
-                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Product.AvailableQuantity, @Model.PurchasedProduct.Product.AvailableQuantity)</td>
+                        <td>@Html.TextBoxFor(c => c.PurchasedProduct.Product.AvailableQuantity, Model.PurchasedProduct.Product.AvailableQuantity.ToString(), new {id="pQuantity"})</td>
                         <td>Previous UnitPrice (tk):</td>
                         <td>@Html.TextBoxFor(c=>c.PreviousUnitPrice, Model.PreviousUnitPrice)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.ManufacturedDate)</td>
-                        <td><input type="date" name="ManufacturedDate" value="@Model.PurchasedProduct.ManufacturedDate"></td>
+                        <td><input type="date" name="PurchasedProduct.ManufacturedDate" value="@Model.PurchasedProduct.ManufacturedDate"></td>
                         <td>Previous MRP (tk):</td>
                         <td>@Html.TextBoxFor(c=>c.PreviousMrp, Model.PreviousMrp)</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.ExpireDate)</td>
-                        <td><input type="date" name="ExpireDate" value="@Model.PurchasedProduct.ExpireDate"/></td>
+                        <td><input type="date" name="PurchasedProduct.ExpireDate" value="@Model.PurchasedProduct.ExpireDate"/></td>
                         <td>@Html.LabelFor(c => c.PurchasedProduct.Mrp)</td>
                         <td>@Html.TextBoxFor(c => c.PurchasedProduct.Mrp, @Model.PurchasedProduct.Mrp)</td>
                     </tr>
@@ -165,30 +168,29 @@
     <script>
        // $("#ProductList").attr('disabled', 'disabled');
         $(document).ready(function () {
-            $("#CategoryList").change(function () {
-                var categoryId = $("#CategoryList").val();
-                var jsonParameterData = { categoryId: categoryId }
-
-                //Ajax
-                $.ajax({
-                    url: "/Purchase/ProductsDropDownLoad",
-                    type: "POST",
-                    data: jsonParameterData,
-                    success: function (products) {
-                        //alert("Success");
-                        $("#ProductList").empty();
-                        $("#ProductList").append('<option value="  ">-Select-</option>');
-                        $.each(products,
-                            function (key, value) {
-                            //alert("Id:" + value.Id + "Name:" + value.Name);
-                            $("#ProductList").append("<option value=" + value.Id + ">" + value.Name + "</option>");
-                        })
-                    },
-                    error: function () {
-                        alert("failed");
-                    }
-                });
-            })
+	        $("#CategoryList").change(function() {
+		        var categoryId = $("#CategoryList").val();
+		        var jsonParameterData = { categoryId: categoryId }
+		        //Ajax
+		        $.ajax({
+		            url: "/Purchase/ProductsDropDownLoad",
+		            type: "POST",
+		            data: jsonParameterData,
+		            success: function (products) {
+		                //alert("Success");
+		                $("#ProductList").empty();
+		                $("#ProductList").append('<option value="  ">-Select-</option>');
+		                $.each(products,
+			                function(key, value) {
+								//alert("Id:" + value.Id + "Name:" + value.Name);
+								$("#ProductList").append("<option value=" + value.Id + ">" + value.Name + "</option>");
+			                });
+		            },
+		            error: function () {
+		                alert("failed");
+		            }
+		        });
+	        });
         })
     </script>
     <script>
@@ -199,20 +201,37 @@
 
             //Ajax
             $.ajax({
-                url: "/Purchase/GetProductCode",
+                url: "/Purchase/GetProductInfo",
                 type: "POST",
                 data: jsonParameterData,
                 success: function (data) {
-                    alert("success");
-                    var productCode = data[0].Code;
-                    alert("Code: " + productCode);
+                    //alert("success");
+					var productCode = data[0].Code;
+                    var productQuantity = data[0].AvailableQuantity.toString();
+                    //alert("Quantity: " + productQuantity);
+                    //alert("Code: " + productCode);
 
-                    $("#pCode").text(productCode);
+                    //$("#pCode").text(productCode);
+					$("#pCode").val(productCode);
+                    $("#pQuantity").val(productQuantity);
+
                 },
                 error: function () {
                     alert("Failed");
                 }
-            });
+			});
+
+			$.ajax({
+				url: "/Purchase/GetPreviousPurchaseInfo",
+				type: "POST",
+				data: jsonParameterData,
+				success: function(data) {
+					alert("Success");
+					var previousUnitPrice = data[0].PurchasedProduct.UnitPrice.toString();
+					var previousMrp = data[0].PurchasedProduct.Mrp.toString();
+					alert("Unit: " + previousUnitPrice + " Mrp: " + previousMrp);
+				}
+			})
         })
         //document.ready(function () {
             

@@ -49,63 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext\ProjectDbContext.cs" />
-    <Compile Include="Migrations\201911201823581_InitialCreate.cs" />
-    <Compile Include="Migrations\201911201823581_InitialCreate.Designer.cs">
-      <DependentUpon>201911201823581_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911222248182_ProductCategoryIdAdded.cs" />
-    <Compile Include="Migrations\201911222248182_ProductCategoryIdAdded.Designer.cs">
-      <DependentUpon>201911222248182_ProductCategoryIdAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911230719124_ProductAvailableQuantityAdded.cs" />
-    <Compile Include="Migrations\201911230719124_ProductAvailableQuantityAdded.Designer.cs">
-      <DependentUpon>201911230719124_ProductAvailableQuantityAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911231654531_CategoryNameAddedToProductModel.cs" />
-    <Compile Include="Migrations\201911231654531_CategoryNameAddedToProductModel.Designer.cs">
-      <DependentUpon>201911231654531_CategoryNameAddedToProductModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911231931597_Customer.cs" />
-    <Compile Include="Migrations\201911231931597_Customer.Designer.cs">
-      <DependentUpon>201911231931597_Customer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911231953208_Supplier.cs" />
-    <Compile Include="Migrations\201911231953208_Supplier.Designer.cs">
-      <DependentUpon>201911231953208_Supplier.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912011405599_Product_categoryName_Removed.cs" />
-    <Compile Include="Migrations\201912011405599_Product_categoryName_Removed.Designer.cs">
-      <DependentUpon>201912011405599_Product_categoryName_Removed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912041733039_PurchaseModel.cs" />
-    <Compile Include="Migrations\201912041733039_PurchaseModel.Designer.cs">
-      <DependentUpon>201912041733039_PurchaseModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912041758322_PurchaseModel1.cs" />
-    <Compile Include="Migrations\201912041758322_PurchaseModel1.Designer.cs">
-      <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912051359428_PurchaseModel2.cs" />
-    <Compile Include="Migrations\201912051359428_PurchaseModel2.Designer.cs">
-      <DependentUpon>201912051359428_PurchaseModel2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912051421131_PurchaseModel3.cs" />
-    <Compile Include="Migrations\201912051421131_PurchaseModel3.Designer.cs">
-      <DependentUpon>201912051421131_PurchaseModel3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912051704142_PurchaseModel4.cs" />
-    <Compile Include="Migrations\201912051704142_PurchaseModel4.Designer.cs">
-      <DependentUpon>201912051704142_PurchaseModel4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912071632352_PurchaseModel5.cs" />
-    <Compile Include="Migrations\201912071632352_PurchaseModel5.Designer.cs">
-      <DependentUpon>201912071632352_PurchaseModel5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912080643096_PurchaseModel6.cs" />
-    <Compile Include="Migrations\201912080643096_PurchaseModel6.Designer.cs">
-      <DependentUpon>201912080643096_PurchaseModel6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,50 +60,6 @@
       <Project>{19dd9224-824a-474c-b38c-50ef6eb7581c}</Project>
       <Name>CyberSolar.MODEL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911201823581_InitialCreate.resx">
-      <DependentUpon>201911201823581_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911222248182_ProductCategoryIdAdded.resx">
-      <DependentUpon>201911222248182_ProductCategoryIdAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911230719124_ProductAvailableQuantityAdded.resx">
-      <DependentUpon>201911230719124_ProductAvailableQuantityAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911231654531_CategoryNameAddedToProductModel.resx">
-      <DependentUpon>201911231654531_CategoryNameAddedToProductModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911231931597_Customer.resx">
-      <DependentUpon>201911231931597_Customer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911231953208_Supplier.resx">
-      <DependentUpon>201911231953208_Supplier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912011405599_Product_categoryName_Removed.resx">
-      <DependentUpon>201912011405599_Product_categoryName_Removed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912041733039_PurchaseModel.resx">
-      <DependentUpon>201912041733039_PurchaseModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912041758322_PurchaseModel1.resx">
-      <DependentUpon>201912041758322_PurchaseModel1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912051359428_PurchaseModel2.resx">
-      <DependentUpon>201912051359428_PurchaseModel2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912051421131_PurchaseModel3.resx">
-      <DependentUpon>201912051421131_PurchaseModel3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912051704142_PurchaseModel4.resx">
-      <DependentUpon>201912051704142_PurchaseModel4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912071632352_PurchaseModel5.resx">
-      <DependentUpon>201912071632352_PurchaseModel5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912080643096_PurchaseModel6.resx">
-      <DependentUpon>201912080643096_PurchaseModel6.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

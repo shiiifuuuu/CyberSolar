@@ -35,7 +35,7 @@ namespace CyberSolar.Controllers
                 .Select(c => new SelectListItem()
                 { Value = c.Id.ToString(), Text = c.Name }).ToList();
         }
-        
+
         public JsonResult ProductsDropDownLoad(int categoryId)
         {
             var productList = _productManager.GetAll().Where(c => c.CategoryId == categoryId).ToList();
@@ -44,11 +44,17 @@ namespace CyberSolar.Controllers
             return Json(products, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetProductCode(int productId)
+        public JsonResult GetProductInfo(int productId)
         {
             var productList = _productManager.GetAll().Where(c => c.Id == productId).ToList();
-            var productCode = productList.Select(c=>new { c.Code, c.AvailableQuantity}).ToList();
-            return Json(productCode, JsonRequestBehavior.AllowGet);
+            var productInfo = productList.Select(c=>new { c.Code, c.AvailableQuantity}).ToList();
+            return Json(productInfo, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetPreviousPurchaseInfo(int productId)
+        {
+	        var purchaseList = _purchaseManager.GetAll().Where(c => c.PurchasedProduct.ProductId == productId).ToList();
+	        var purchaseInfo = purchaseList.Select(c => new {c.PurchasedProduct.UnitPrice, c.PurchasedProduct.Mrp}).ToList();
+	        return Json(purchaseInfo, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -56,9 +62,10 @@ namespace CyberSolar.Controllers
         {
             PurchaseViewModel purchaseViewModel = new PurchaseViewModel();
             //_purchaseManager.GetAll();
-            purchaseViewModel.PurchaseInformations = _purchaseManager.GetIQueryable().ToList(); //Get All Purchase Informations
+            purchaseViewModel.PurchaseInformations = _purchaseManager.GetAll();
             SuppliersDropDownLoad(purchaseViewModel);
             CategoriesDropDownLoad(purchaseViewModel);
+            //ProductsDropDownLoad(purchaseViewModel);
             return View(purchaseViewModel);
         }
 
@@ -70,6 +77,7 @@ namespace CyberSolar.Controllers
             purchaseViewModel.PurchaseInformations = _purchaseManager.GetIQueryable().ToList(); //Get All Purchase Informations
             SuppliersDropDownLoad(purchaseViewModel);
             CategoriesDropDownLoad(purchaseViewModel);
+            //ProductsDropDownLoad(purchaseViewModel);
             return View(purchaseViewModel);
         }
     }
